@@ -1,0 +1,30 @@
+{
+  "name": "tailwindrazorpage.web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+
+  "scripts": {
+    "postinstall": "npm run build",
+    "dev": "postcss wwwroot/css/app.css -o wwwroot/css/style.css --watch",
+    "build": "postcss wwwroot/css/app.css -o wwwroot/css/styles.css",
+
+    "css:build": "npx @tailwindcss/cli -i ./wwwroot/css/app.css -o ./wwwroot/css/style.css --minify",
+    "build:js": "esbuild wwwroot/js/icons.js --bundle --outfile=wwwroot/js/icons.bundle.js"
+  },
+
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.5.23",
+    "postcss-cli": "^11.0.1",
+    "esbuild": "^0.28.1",
+    "lucide": "^1.25.0",
+    "tailwindcss": "^4.3.3"
+  }
+}
