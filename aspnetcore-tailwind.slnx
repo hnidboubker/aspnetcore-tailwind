@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Src/RazorPage/TailwindMvc.Web/TailwindMvc.Web.csproj" />
+  <Project Path="Src/TailwindMaui.Web/TailwindMaui.Web.csproj" />
   <Project Path="Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj" />
 </Solution>
