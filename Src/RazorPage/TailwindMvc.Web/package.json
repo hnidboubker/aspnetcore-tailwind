@@ -1,13 +1,8 @@
 {
-  "name": "tailwindrazorpage.web",
+  "name": "tailwindmvc.web",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-
   "scripts": {
     "postinstall": "npm run build",
     "dev": "postcss wwwroot/css/app.css -o wwwroot/css/style.css --watch",
@@ -16,7 +11,9 @@
     "css:build": "npx @tailwindcss/cli -i ./wwwroot/css/app.css -o ./wwwroot/css/style.css --minify",
     "build:js": "esbuild wwwroot/js/icons.js --bundle --outfile=wwwroot/js/icons.bundle.js"
   },
-
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "@tailwindcss/postcss": "^4.3.3",

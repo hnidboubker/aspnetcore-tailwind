@@ -10,7 +10,7 @@
 
 	
 	<ItemGroup>
-		<UpToDateCheckBuilt Include="wwwroot/css/input.css" Set="Css" />
+		<UpToDateCheckBuilt Include="wwwroot/css/app.css" Set="Css" />
 		<UpToDateCheckBuilt Include="postcss.config.js" Set="Css" />
 	</ItemGroup>
 
