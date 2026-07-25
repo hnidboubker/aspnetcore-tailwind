@@ -1,7 +1,138 @@
 ﻿@page "/"
 
-<PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="mx-auto max-w-5xl px-6 py-10">
 
-Welcome to your new app.
+    <h1 class="mb-6 text-4xl font-bold text-blue-600">
+        Tailwind CSS 4.3 with ASP.NET Core Blazor
+    </h1>
+
+    <p class="mb-8 text-lg text-gray-700">
+        This page explains how to set up Tailwind CSS version 4.3
+        with the CLI and PostCSS in an ASP.NET Core MVC project.
+    </p>
+
+    <section class="mb-8">
+        <h2 class="mb-3 text-2xl font-semibold">
+            1. Install dependencies
+        </h2>
+
+        <p class="mb-3">
+            Initialize Node.js in your project:
+        </p>
+
+        <pre class="rounded bg-gray-900 p-4 text-white">
+npm init -y
+</pre>
+
+        <p class="mt-4 mb-3">
+            Install Tailwind CSS 4.3, the CLI, and PostCSS:
+        </p>
+
+        <pre class="rounded bg-gray-900 p-4 text-white">
+npm install tailwindcss@latest tailwindcss/cli tailwindcss/postcss postcss postcss-cli --save-dev
+</pre>
+    </section>
+
+    <section class="mb-8">
+        <h2 class="mb-3 text-2xl font-semibold">
+            2. Create the Tailwind CSS entry file
+        </h2>
+
+        <p>
+            With Tailwind CSS 4, the CSS entry file uses the new syntax:
+        </p>
+
+        <pre class="mt-3 rounded bg-gray-900 p-4 text-white">
+import "tailwindcss";
+</pre>
+    </section>
+
+    <section class="mb-8">
+        <h2 class="mb-3 text-2xl font-semibold">
+            3. Configure PostCSS
+        </h2>
+
+        <p>
+            Create the file <strong>postcss.config.mjs</strong>:
+        </p>
+
+        <pre class="mt-3 rounded bg-gray-900 p-4 text-white">
+export default {
+  plugins: {
+    "tailwindcss/postcss": {},
+  },
+};
+</pre>
+    </section>
+
+    <section class="mb-8">
+        <h2 class="mb-3 text-2xl font-semibold">
+            4. Build Tailwind CSS
+        </h2>
+
+        <p>
+            Add the following scripts to <strong>package.json</strong>:
+        </p>
+
+        <pre class="mt-3 rounded bg-gray-900 p-4 text-white">
+"scripts": {
+  "build": "npx tailwindcss/cli -i ./Styles/app.css -o ./wwwroot/css/site.css",
+  "watch": "npx tailwindcss/cli -i ./Styles/app.css -o ./wwwroot/css/site.css --watch"
+}
+</pre>
+
+        <p class="mt-4">
+            Build the CSS file:
+        </p>
+
+        <pre class="mt-3 rounded bg-gray-900 p-4 text-white">
+npm run build
+</pre>
+
+        <p class="mt-4">
+            Run Tailwind in watch mode during development:
+        </p>
+
+        <pre class="mt-3 rounded bg-gray-900 p-4 text-white">
+npm run watch
+</pre>
+    </section>
+
+    <section class="mb-8">
+        <h2 class="mb-3 text-2xl font-semibold">
+            5. Use Tailwind in ASP.NET Core MVC
+        </h2>
+
+        <p>
+            Reference the generated CSS file in
+            <strong>Views/Shared/_Layout.cshtml</strong>:
+        </p>
+
+        <pre class="mt-3 rounded bg-gray-900 p-4 text-white">
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</pre>
+
+        <p class="mt-4">
+            You can now use Tailwind CSS classes in your MVC views
+            located in the <strong>Views</strong> folder.
+        </p>
+    </section>
+
+    <section class="rounded bg-blue-50 p-6">
+        <h2 class="mb-3 text-2xl font-semibold text-blue-700">
+            Tailwind Example
+        </h2>
+
+        <button class="rounded bg-blue-600 px-5 py-2 font-semibold text-white hover:bg-blue-700">
+            Tailwind 4.3 Button
+        </button>
+
+        <p class="mt-4 text-gray-700">
+            If this button appears with a blue background and a hover effect,
+            Tailwind CSS is correctly configured in your ASP.NET Core MVC project.
+        </p>
+    </section>
+
+</div>
+
