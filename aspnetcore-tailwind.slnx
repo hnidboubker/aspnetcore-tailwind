@@ -1,1 +1,3 @@
-<Solution />
+<Solution>
+  <Project Path="Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj" />
+</Solution>
