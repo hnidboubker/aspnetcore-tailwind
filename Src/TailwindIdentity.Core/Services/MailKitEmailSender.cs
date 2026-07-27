@@ -1,6 +1,8 @@
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using MimeKit;
 
 namespace TailwindIdentity.Core.Services;
@@ -24,7 +26,7 @@ public class MailKitEmailSender : IEmailSender
             _config["Email:From"] ?? "noreply@tailwind.local"));
         message.To.Add(MailboxAddress.Parse(email));
         message.Subject = subject;
-        message.Body = new TextPart(MimeKit.Text.TextPartKind.Html) { Text = htmlMessage };
+        message.Body = new TextPart("html") { Text = htmlMessage };
 
         try
         {

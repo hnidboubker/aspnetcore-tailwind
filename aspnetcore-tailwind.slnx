@@ -3,6 +3,9 @@
     <Project Path="Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/TailwindBlazor.Web.Client.csproj" />
     <Project Path="Src/TailwindBlazor.Web/TailwindBlazor.Web/TailwindBlazor.Web.csproj" />
   </Folder>
+  <Folder Name="/Core/">
+    <Project Path="Src/TailwindIdentity.Core/TailwindIdentity.Core.csproj" />
+  </Folder>
   <Folder Name="/Maui/">
     <Project Path="Src/TailwindMaui.Web/TailwindMaui.Web.csproj" />
   </Folder>

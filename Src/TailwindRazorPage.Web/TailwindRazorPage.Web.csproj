@@ -15,6 +15,10 @@
 	</ItemGroup>
 
 	
+	<ItemGroup>
+		<ProjectReference Include="..\TailwindIdentity.Core\TailwindIdentity.Core.csproj" />
+	</ItemGroup>
+
 	<Target Name="Tailwind" BeforeTargets="Build">
 		<Exec Command="npm run css:build" />
 	</Target>
