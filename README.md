@@ -10,13 +10,16 @@ Whether you're starting a new project or exploring Tailwind CSS with ASP.NET Cor
 
 ## Features
 
-- ASP.NET Core (.NET 8 / .NET 9)
+- ASP.NET Core (.NET 8 / .NET 10)
 - Tailwind CSS 4.3
 - PostCSS integration
 - JavaScript bundling with esbuild
 - Minimal and clean project structure
 - Ready-to-use npm build scripts
 - Optimized frontend asset pipeline
+- **Custom Identity UI** with Tailwind CSS (Login, Register, Profile, Change Password)
+- **MailKit** email sender for Identity
+- **Entity Framework Core** with SQL Server LocalDB
 - Step-by-step documentation
 
 ---
@@ -25,19 +28,51 @@ Whether you're starting a new project or exploring Tailwind CSS with ASP.NET Cor
 
 | Template | Description |
 |----------|-------------|
-| Razor Pages | ASP.NET Core Razor Pages starter template |
-| MVC | ASP.NET Core MVC starter template |
-| Blazor | ASP.NET Core Blazor starter template |
-| .NET MAUI | .NET MAUI starter project |
+| Razor Pages | ASP.NET Core Razor Pages + custom Identity UI |
+| MVC | ASP.NET Core MVC + custom Identity UI |
+| Blazor | ASP.NET Core Blazor WebAssembly + custom Identity UI |
+| .NET MAUI | .NET MAUI Blazor Hybrid starter project |
+| **Identity.Core** | Shared Identity library (models, DbContext, MailKit) |
+
+---
+
+## Identity UI
+
+Each web template includes a **custom Identity UI** built with Tailwind CSS, replacing the default Bootstrap-based pages.
+
+### Pages Included
+
+| Page | Route | Description |
+|------|-------|-------------|
+| Login | `/Identity/Account/Login` | Email + password + remember me |
+| Register | `/Identity/Account/Register` | First name, last name, email, password |
+| Forgot Password | `/Identity/Account/ForgotPassword` | Email input for reset link |
+| Profile | `/Identity/Account/Manage` | View/edit first name, last name |
+| Change Password | `/Identity/Account/Manage/ChangePassword` | Old/new/confirm password |
+
+### Design
+
+- Clean white cards on light gray background
+- Emerald green accent color (`bg-emerald-600`)
+- Rounded corners, subtle shadows
+- Responsive design
+- Form validation with error messages
 
 ---
 
 ## Getting Started
 
+### Prerequisites
+
+- .NET SDK 8 or later
+- Node.js 20 or later
+- npm
+- SQL Server LocalDB (included with Visual Studio)
+
 ### Clone the repository
 
 ```bash
-git clone https://github.com/<username>/<repository>.git
+git clone https://github.com/<username>/<repository>.cd
 ```
 
 ### Install dependencies
@@ -58,12 +93,6 @@ npm run dev
 npm run build
 ```
 
-### Bundle JavaScript
-
-```bash
-npm run build:js
-```
-
 ### Run the application
 
 ```bash
@@ -72,44 +101,63 @@ dotnet run
 
 ---
 
-## Project Structure
+## Database Setup
 
-```
-src/
-│
-├── RazorPages/
-├── MVC/
-├── Blazor/
-└── Maui/
+The templates use **Entity Framework Core** with **SQL Server LocalDB**.
+
+### Connection String
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=localhost;Database=TailwindIdentity;Trusted_Connection=True;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True"
+  }
+}
 ```
 
-Frontend assets are generated inside:
+### Create Database
 
+```bash
+dotnet ef database update -p Src/TailwindIdentity.Core -s Src/TailwindRazorPage.Web
 ```
-wwwroot/
-├── css/
-└── js/
+
+### Email Configuration (MailKit)
+
+Configure SMTP settings in `appsettings.json`:
+
+```json
+{
+  "Email": {
+    "From": "noreply@yourdomain.com",
+    "SmtpHost": "smtp.yourdomain.com",
+    "SmtpPort": "587",
+    "SmtpUser": "your-user",
+    "SmtpPassword": "your-password"
+  }
+}
 ```
 
 ---
 
-# Documentation
+## Project Structure
 
-This repository includes detailed documentation explaining every step of the frontend setup.
-
-## Step-by-Step Guides
-
-- Project initialization
-- Installing Node.js and npm
-- Installing Tailwind CSS 4.3
-- Configuring PostCSS
-- Configuring `package.json`
-- Configuring CSS
-- Building frontend assets
-- Development workflow
-- Production deployment
-
-Each guide explains **what is being configured, why it is required, and how it works**.
+```
+Src/
+├── TailwindIdentity.Core/          # Shared Identity library
+│   ├── Models/                     # ApplicationUser, ApplicationRole
+│   ├── Data/                       # ApplicationDbContext
+│   ├── Services/                   # MailKitEmailSender
+│   └── Migrations/                 # EF Core migrations
+├── TailwindRazorPage.Web/          # Razor Pages template
+│   └── Areas/Identity/Pages/       # Custom Identity pages
+├── TailwindMvc.Web/                # MVC template
+│   ├── Controllers/                # AccountController, ManageController
+│   └── Views/Account/              # Identity views
+├── TailwindBlazor.Web/             # Blazor WebAssembly template
+│   ├── Server/Components/Account/  # API endpoints
+│   └── Client/Components/Account/  # Identity components
+└── TailwindMaui.Web/               # MAUI template
+```
 
 ---
 
@@ -141,47 +189,28 @@ wwwroot/
 
 ---
 
-## Development Workflow
-
-During development:
-
-```bash
-npm run dev
-```
-
-The CSS pipeline watches for changes and automatically regenerates the output files.
-
-For production:
-
-```bash
-npm run build
-npm run build:js
-```
-
-The generated assets are placed in the `wwwroot` folder and served directly by ASP.NET Core.
-
----
-
 ## Requirements
 
 - .NET SDK 8 or later
 - Node.js 20 or later
 - npm
-- Visual Studio 2022
+- SQL Server LocalDB
+- Visual Studio 2022 (recommended)
 - Visual Studio Code (optional)
 
 ---
 
 ## Roadmap
 
-- Razor Pages starter
-- MVC starter
-- Blazor starter
-- .NET MAUI starter
-- Additional UI examples
-- Authentication templates
-- Docker support
-- GitHub Actions CI/CD
+- [x] Razor Pages starter
+- [x] MVC starter
+- [x] Blazor starter
+- [x] .NET MAUI starter
+- [x] Authentication templates (Identity UI)
+- [ ] Docker support
+- [ ] GitHub Actions CI/CD
+- [ ] Additional UI examples
+- [ ] Role-based authorization
 
 ---
 
@@ -216,5 +245,7 @@ This project is built with:
 - Tailwind CSS
 - PostCSS
 - esbuild
+- MailKit
+- Entity Framework Core
 
 Thanks to the .NET and Tailwind CSS communities for their excellent tools and documentation.
