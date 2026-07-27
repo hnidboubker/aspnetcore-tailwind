@@ -15,3 +15,5 @@ public class ApplicationUser : IdentityUser<int>
 
     public string FullName => $"{FirstName} {LastName}";
 }
+
+
