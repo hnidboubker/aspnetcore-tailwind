@@ -15,11 +15,6 @@
 	</ItemGroup>
 
 	
-	<ItemGroup>
-	  <Folder Include="NewFolder\" />
-	</ItemGroup>
-
-
 	<Target Name="Tailwind" BeforeTargets="Build">
 		<Exec Command="npm run css:build" />
 	</Target>

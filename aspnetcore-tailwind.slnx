@@ -1,5 +1,5 @@
 <Solution>
-  <Folder Name="/Balzor/">
+  <Folder Name="/Blazor/">
     <Project Path="Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/TailwindBlazor.Web.Client.csproj" />
     <Project Path="Src/TailwindBlazor.Web/TailwindBlazor.Web/TailwindBlazor.Web.csproj" />
   </Folder>
