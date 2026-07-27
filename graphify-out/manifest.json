@@ -1,0 +1,622 @@
+{
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/Components/Account/ForgotPassword.razor": {
+    "mtime": 1785163578.8176398,
+    "ast_hash": "80a09867890ae6edbcb828da11675a92",
+    "semantic_hash": "80a09867890ae6edbcb828da11675a92"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/Components/Account/IdentityAuthenticationStateProvider.cs": {
+    "mtime": 1785163544.509124,
+    "ast_hash": "aa6f66601a5ab9641ccfd63135bc5e17",
+    "semantic_hash": "aa6f66601a5ab9641ccfd63135bc5e17"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/Components/Account/Login.razor": {
+    "mtime": 1785163555.4201853,
+    "ast_hash": "668724c6d01ba26edb5d12452b29cefe",
+    "semantic_hash": "668724c6d01ba26edb5d12452b29cefe"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/Components/Account/LoginDisplay.razor": {
+    "mtime": 1785163604.0125072,
+    "ast_hash": "d33ba8df358f5adc7d227d2bdb271d88",
+    "semantic_hash": "d33ba8df358f5adc7d227d2bdb271d88"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/Components/Account/Manage/ChangePassword.razor": {
+    "mtime": 1785163599.960305,
+    "ast_hash": "6576dd35277e47a0399961f737587cfd",
+    "semantic_hash": "6576dd35277e47a0399961f737587cfd"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/Components/Account/Manage/Index.razor": {
+    "mtime": 1785163589.4045453,
+    "ast_hash": "db7fd7e405ad061af2b2b769334bbd93",
+    "semantic_hash": "db7fd7e405ad061af2b2b769334bbd93"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/Components/Account/Register.razor": {
+    "mtime": 1785163571.162827,
+    "ast_hash": "c344d85eb7c92cbf4abb71ebe361bae9",
+    "semantic_hash": "c344d85eb7c92cbf4abb71ebe361bae9"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/Program.cs": {
+    "mtime": 1785163627.4286218,
+    "ast_hash": "79b9561adc8a9120f90fc09f26e74cf5",
+    "semantic_hash": "79b9561adc8a9120f90fc09f26e74cf5"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/TailwindBlazor.Web.Client.csproj": {
+    "mtime": 1785163810.9044151,
+    "ast_hash": "910545d6ea96edfd465f4c8b21841751",
+    "semantic_hash": "910545d6ea96edfd465f4c8b21841751"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/_Imports.razor": {
+    "mtime": 1785163913.064304,
+    "ast_hash": "d7df846c74c604828d796ca26f51520f",
+    "semantic_hash": "d7df846c74c604828d796ca26f51520f"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web.Client/tailwind.extension.json": {
+    "mtime": 1784995187.890501,
+    "ast_hash": "ac3aca5ea4a86ed183ac2271104f2e18",
+    "semantic_hash": "ac3aca5ea4a86ed183ac2271104f2e18"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Components/Account/AccountEndpoints.cs": {
+    "mtime": 1785163206.0300453,
+    "ast_hash": "11a84c4afafd9d2a368678bb6ebd4edf",
+    "semantic_hash": "11a84c4afafd9d2a368678bb6ebd4edf"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Components/App.razor": {
+    "mtime": 1784993315.9024844,
+    "ast_hash": "a84dc97ccc1da22e159ecd029ed974b7",
+    "semantic_hash": "a84dc97ccc1da22e159ecd029ed974b7"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Components/Layout/MainLayout.razor": {
+    "mtime": 1785163646.8551042,
+    "ast_hash": "5f7f2e868c6bb4371e6164f316aee098",
+    "semantic_hash": "5f7f2e868c6bb4371e6164f316aee098"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Components/Pages/Error.razor": {
+    "mtime": 1784991920.062409,
+    "ast_hash": "895aa385b310af50d09fd583be83b251",
+    "semantic_hash": "895aa385b310af50d09fd583be83b251"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Components/Pages/Home.razor": {
+    "mtime": 1784992710.557868,
+    "ast_hash": "d3d1d02d3fa830837f900364bc751a32",
+    "semantic_hash": "d3d1d02d3fa830837f900364bc751a32"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Components/Routes.razor": {
+    "mtime": 1785163432.1489086,
+    "ast_hash": "6d20a9fe81474462f59dac97f4e146ad",
+    "semantic_hash": "6d20a9fe81474462f59dac97f4e146ad"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Components/_Imports.razor": {
+    "mtime": 1785163363.079563,
+    "ast_hash": "b79c909da786a0ad17a003c182db40d7",
+    "semantic_hash": "b79c909da786a0ad17a003c182db40d7"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Program.cs": {
+    "mtime": 1785163697.2598968,
+    "ast_hash": "3eb77552069094a3018e2890c075e9c8",
+    "semantic_hash": "3eb77552069094a3018e2890c075e9c8"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/Properties/launchSettings.json": {
+    "mtime": 1784991919.9634068,
+    "ast_hash": "604b56a49d0fcd4d094ca6d66e901ddf",
+    "semantic_hash": "604b56a49d0fcd4d094ca6d66e901ddf"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/TailwindBlazor.Web.csproj": {
+    "mtime": 1785164421.8447175,
+    "ast_hash": "037d914aa4bb8ed44cd89da7ec750d16",
+    "semantic_hash": "037d914aa4bb8ed44cd89da7ec750d16"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/appsettings.Development.json": {
+    "mtime": 1784991919.97442,
+    "ast_hash": "804b473502a4c415cf75db61c56c32aa",
+    "semantic_hash": "804b473502a4c415cf75db61c56c32aa"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/appsettings.json": {
+    "mtime": 1784991919.978408,
+    "ast_hash": "f7e65dde4e5533740a0d57ac9355c0e8",
+    "semantic_hash": "f7e65dde4e5533740a0d57ac9355c0e8"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/package.json": {
+    "mtime": 1784992907.9683187,
+    "ast_hash": "01deb444413a87d6ab0f3eb729d8db46",
+    "semantic_hash": "01deb444413a87d6ab0f3eb729d8db46"
+  },
+  "Src/TailwindBlazor.Web/TailwindBlazor.Web/postcss.config.js": {
+    "mtime": 1784984715.6297655,
+    "ast_hash": "dc6fe4d0b29285ddf7d199979fc681e9",
+    "semantic_hash": "dc6fe4d0b29285ddf7d199979fc681e9"
+  },
+  "Src/TailwindIdentity.Core/Data/DefaultContext.cs": {
+    "mtime": 1785170633.9775915,
+    "ast_hash": "a1742db1f5f467aca3c7ff0eba9a154f",
+    "semantic_hash": "a1742db1f5f467aca3c7ff0eba9a154f"
+  },
+  "Src/TailwindIdentity.Core/IdentityServiceExtensions.cs": {
+    "mtime": 1785162397.1796644,
+    "ast_hash": "d5fd929b109e648c6482e31532c71351",
+    "semantic_hash": "d5fd929b109e648c6482e31532c71351"
+  },
+  "Src/TailwindIdentity.Core/Migrations/20260727145951_InitialIdentity.Designer.cs": {
+    "mtime": 1785164391.3279152,
+    "ast_hash": "f44600506f1085c616445de335f0a657",
+    "semantic_hash": "f44600506f1085c616445de335f0a657"
+  },
+  "Src/TailwindIdentity.Core/Migrations/20260727145951_InitialIdentity.cs": {
+    "mtime": 1785164391.3269062,
+    "ast_hash": "71106d94a2dd9d87f526a677bbde52ed",
+    "semantic_hash": "71106d94a2dd9d87f526a677bbde52ed"
+  },
+  "Src/TailwindIdentity.Core/Migrations/ApplicationDbContextModelSnapshot.cs": {
+    "mtime": 1785164391.3289108,
+    "ast_hash": "f4b8b6a7e186b98d8e910fa60142c6b5",
+    "semantic_hash": "f4b8b6a7e186b98d8e910fa60142c6b5"
+  },
+  "Src/TailwindIdentity.Core/Models/ApplicationRole.cs": {
+    "mtime": 1785161599.173449,
+    "ast_hash": "dbee43b4db9cb8ede006feba52a6da6f",
+    "semantic_hash": "dbee43b4db9cb8ede006feba52a6da6f"
+  },
+  "Src/TailwindIdentity.Core/Models/ApplicationRoleClaim.cs": {
+    "mtime": 1785169245.1441424,
+    "ast_hash": "d4ca5168a4d9897d8a7d79e22f5aa344",
+    "semantic_hash": "d4ca5168a4d9897d8a7d79e22f5aa344"
+  },
+  "Src/TailwindIdentity.Core/Models/ApplicationUser.cs": {
+    "mtime": 1785169240.8931937,
+    "ast_hash": "3428209b7db261ceb6be2ad6e9058c9e",
+    "semantic_hash": "3428209b7db261ceb6be2ad6e9058c9e"
+  },
+  "Src/TailwindIdentity.Core/Models/ApplicationUserClaim.cs": {
+    "mtime": 1785169236.8818207,
+    "ast_hash": "aa5e45e8a4b695427978587d9b88cf5c",
+    "semantic_hash": "aa5e45e8a4b695427978587d9b88cf5c"
+  },
+  "Src/TailwindIdentity.Core/Models/ApplicationUserLogin.cs": {
+    "mtime": 1785169707.7126606,
+    "ast_hash": "708a38f8e95b0676d923437f1cebcb1e",
+    "semantic_hash": "708a38f8e95b0676d923437f1cebcb1e"
+  },
+  "Src/TailwindIdentity.Core/Models/ApplicationUserRole.cs": {
+    "mtime": 1785169561.7225308,
+    "ast_hash": "ab0cb4801fa90345906ec4b5d0b6953a",
+    "semantic_hash": "ab0cb4801fa90345906ec4b5d0b6953a"
+  },
+  "Src/TailwindIdentity.Core/Models/ApplicationUserToken.cs": {
+    "mtime": 1785169227.1434317,
+    "ast_hash": "9558da4aacf31bdc09d954025ac401cf",
+    "semantic_hash": "9558da4aacf31bdc09d954025ac401cf"
+  },
+  "Src/TailwindIdentity.Core/Services/MailKitEmailSender.cs": {
+    "mtime": 1785162444.7274384,
+    "ast_hash": "8becb4aef580431b9aea4cff5286f21c",
+    "semantic_hash": "8becb4aef580431b9aea4cff5286f21c"
+  },
+  "Src/TailwindIdentity.Core/TailwindIdentity.Core.csproj": {
+    "mtime": 1785162260.8145914,
+    "ast_hash": "b2a24ae545bf6a16dd46a0f805fc129e",
+    "semantic_hash": "b2a24ae545bf6a16dd46a0f805fc129e"
+  },
+  "Src/TailwindMaui.Web/App.xaml": {
+    "mtime": 1784988368.5338962,
+    "ast_hash": "f0252d403888d32e882b9a91cca6e738",
+    "semantic_hash": "f0252d403888d32e882b9a91cca6e738"
+  },
+  "Src/TailwindMaui.Web/App.xaml.cs": {
+    "mtime": 1784988416.5094092,
+    "ast_hash": "e4a3258479c087544ff75ef7602fbb6f",
+    "semantic_hash": "e4a3258479c087544ff75ef7602fbb6f"
+  },
+  "Src/TailwindMaui.Web/Components/Layout/MainLayout.razor": {
+    "mtime": 1784989242.998719,
+    "ast_hash": "791a73ae982ddd09cacffbcd2e671dd8",
+    "semantic_hash": "791a73ae982ddd09cacffbcd2e671dd8"
+  },
+  "Src/TailwindMaui.Web/Components/Pages/Home.razor": {
+    "mtime": 1784989644.211972,
+    "ast_hash": "b0d0eee1bde5d2dd95d1dacf529f6a31",
+    "semantic_hash": "b0d0eee1bde5d2dd95d1dacf529f6a31"
+  },
+  "Src/TailwindMaui.Web/Components/Routes.razor": {
+    "mtime": 1784988368.5528994,
+    "ast_hash": "36707cbf42da43b074f5b309823fbbc7",
+    "semantic_hash": "36707cbf42da43b074f5b309823fbbc7"
+  },
+  "Src/TailwindMaui.Web/Components/_Imports.razor": {
+    "mtime": 1784988368.554897,
+    "ast_hash": "49ff452fb0e5daa1730c06faa5980c9b",
+    "semantic_hash": "49ff452fb0e5daa1730c06faa5980c9b"
+  },
+  "Src/TailwindMaui.Web/MainPage.xaml": {
+    "mtime": 1784988368.5569012,
+    "ast_hash": "da2922cd7d8708fbce801139dc006184",
+    "semantic_hash": "da2922cd7d8708fbce801139dc006184"
+  },
+  "Src/TailwindMaui.Web/MainPage.xaml.cs": {
+    "mtime": 1784988407.5697627,
+    "ast_hash": "7daf805e5cc056d8396b32bc935bd3bb",
+    "semantic_hash": "7daf805e5cc056d8396b32bc935bd3bb"
+  },
+  "Src/TailwindMaui.Web/MauiProgram.cs": {
+    "mtime": 1784988407.8045573,
+    "ast_hash": "03323eecdaaac291e1ba552dbee3be0f",
+    "semantic_hash": "03323eecdaaac291e1ba552dbee3be0f"
+  },
+  "Src/TailwindMaui.Web/Platforms/Android/MainActivity.cs": {
+    "mtime": 1784988417.0834124,
+    "ast_hash": "e688412ed256cb42a215ba4fce6a6566",
+    "semantic_hash": "e688412ed256cb42a215ba4fce6a6566"
+  },
+  "Src/TailwindMaui.Web/Platforms/Android/MainApplication.cs": {
+    "mtime": 1784988417.0624113,
+    "ast_hash": "73a8220aef94a69e161fa8d40aad2c7d",
+    "semantic_hash": "73a8220aef94a69e161fa8d40aad2c7d"
+  },
+  "Src/TailwindMaui.Web/Platforms/MacCatalyst/AppDelegate.cs": {
+    "mtime": 1784988417.0494113,
+    "ast_hash": "118b97ead11ea7d48ed94993ad0da16e",
+    "semantic_hash": "118b97ead11ea7d48ed94993ad0da16e"
+  },
+  "Src/TailwindMaui.Web/Platforms/MacCatalyst/Program.cs": {
+    "mtime": 1784988417.3264098,
+    "ast_hash": "295627f39b8dd8973019ea5f05bdfa06",
+    "semantic_hash": "295627f39b8dd8973019ea5f05bdfa06"
+  },
+  "Src/TailwindMaui.Web/Platforms/Tizen/Main.cs": {
+    "mtime": 1784988407.7207615,
+    "ast_hash": "e798ec99e06b491c965881503fdd93df",
+    "semantic_hash": "e798ec99e06b491c965881503fdd93df"
+  },
+  "Src/TailwindMaui.Web/Platforms/Windows/App.xaml": {
+    "mtime": 1784988369.4498975,
+    "ast_hash": "d529f0d7a6b57c901e147ab5c8353936",
+    "semantic_hash": "d529f0d7a6b57c901e147ab5c8353936"
+  },
+  "Src/TailwindMaui.Web/Platforms/Windows/App.xaml.cs": {
+    "mtime": 1784988417.3744135,
+    "ast_hash": "ba5c258cdc63811285a8ca0d8fd04bae",
+    "semantic_hash": "ba5c258cdc63811285a8ca0d8fd04bae"
+  },
+  "Src/TailwindMaui.Web/Platforms/iOS/AppDelegate.cs": {
+    "mtime": 1784988417.005414,
+    "ast_hash": "118b97ead11ea7d48ed94993ad0da16e",
+    "semantic_hash": "118b97ead11ea7d48ed94993ad0da16e"
+  },
+  "Src/TailwindMaui.Web/Platforms/iOS/Program.cs": {
+    "mtime": 1784988416.5644155,
+    "ast_hash": "2a811b5cbd1cc82d7152656483813f76",
+    "semantic_hash": "2a811b5cbd1cc82d7152656483813f76"
+  },
+  "Src/TailwindMaui.Web/Properties/launchSettings.json": {
+    "mtime": 1784988369.4568994,
+    "ast_hash": "4e57b643958c5bf8b3edc47dc24a9cec",
+    "semantic_hash": "4e57b643958c5bf8b3edc47dc24a9cec"
+  },
+  "Src/TailwindMaui.Web/TailwindMaui.Web.csproj": {
+    "mtime": 1784990469.761331,
+    "ast_hash": "956399ed0afcd04d1c1a9e1f10b34675",
+    "semantic_hash": "956399ed0afcd04d1c1a9e1f10b34675"
+  },
+  "Src/TailwindMaui.Web/package.json": {
+    "mtime": 1785161360.0517209,
+    "ast_hash": "4e82cb455cac9e0c0b3a62f35cb2c431",
+    "semantic_hash": "4e82cb455cac9e0c0b3a62f35cb2c431"
+  },
+  "Src/TailwindMaui.Web/postcss.config.js": {
+    "mtime": 1784984715.6297655,
+    "ast_hash": "dc6fe4d0b29285ddf7d199979fc681e9",
+    "semantic_hash": "dc6fe4d0b29285ddf7d199979fc681e9"
+  },
+  "Src/TailwindMvc.Web/Controllers/AccountController.cs": {
+    "mtime": 1785162744.208298,
+    "ast_hash": "33d4fae9c47cc2022b55e2c8d170f149",
+    "semantic_hash": "33d4fae9c47cc2022b55e2c8d170f149"
+  },
+  "Src/TailwindMvc.Web/Controllers/HomeController.cs": {
+    "mtime": 1784986717.342054,
+    "ast_hash": "89b4505c24dc1be183532e7887205c7f",
+    "semantic_hash": "89b4505c24dc1be183532e7887205c7f"
+  },
+  "Src/TailwindMvc.Web/Controllers/ManageController.cs": {
+    "mtime": 1785162752.6666987,
+    "ast_hash": "1155b181a8ae0f1e526cf8fb1b1c8b8a",
+    "semantic_hash": "1155b181a8ae0f1e526cf8fb1b1c8b8a"
+  },
+  "Src/TailwindMvc.Web/Models/ErrorViewModel.cs": {
+    "mtime": 1784986717.354061,
+    "ast_hash": "780bae61927e32f7b444908b289cbab7",
+    "semantic_hash": "780bae61927e32f7b444908b289cbab7"
+  },
+  "Src/TailwindMvc.Web/Program.cs": {
+    "mtime": 1785162703.2910044,
+    "ast_hash": "f100c9d9aa52e222da19df3cf616a42b",
+    "semantic_hash": "f100c9d9aa52e222da19df3cf616a42b"
+  },
+  "Src/TailwindMvc.Web/Properties/launchSettings.json": {
+    "mtime": 1784986716.9247556,
+    "ast_hash": "cb677ce22a79f3458e1b933087de6358",
+    "semantic_hash": "cb677ce22a79f3458e1b933087de6358"
+  },
+  "Src/TailwindMvc.Web/TailwindMvc.Web.csproj": {
+    "mtime": 1785164413.994694,
+    "ast_hash": "91ba6d1c095385cf40540244542653a7",
+    "semantic_hash": "91ba6d1c095385cf40540244542653a7"
+  },
+  "Src/TailwindMvc.Web/Views/Account/AccessDenied.cshtml": {
+    "mtime": 1785162812.4202306,
+    "ast_hash": "10fa99e8fc90da69e41d75a3e17d7b67",
+    "semantic_hash": "10fa99e8fc90da69e41d75a3e17d7b67"
+  },
+  "Src/TailwindMvc.Web/Views/Account/ConfirmEmail.cshtml": {
+    "mtime": 1785162807.393869,
+    "ast_hash": "6fc787fe74a224781a2fcc7580a07529",
+    "semantic_hash": "6fc787fe74a224781a2fcc7580a07529"
+  },
+  "Src/TailwindMvc.Web/Views/Account/ForgotPassword.cshtml": {
+    "mtime": 1785162800.9708824,
+    "ast_hash": "a869ec304765f1a253f7f8f53d34f8b6",
+    "semantic_hash": "a869ec304765f1a253f7f8f53d34f8b6"
+  },
+  "Src/TailwindMvc.Web/Views/Account/ForgotPasswordConfirmation.cshtml": {
+    "mtime": 1785162810.3976192,
+    "ast_hash": "17260e42a39026b478c9a40507bba7fa",
+    "semantic_hash": "17260e42a39026b478c9a40507bba7fa"
+  },
+  "Src/TailwindMvc.Web/Views/Account/Login.cshtml": {
+    "mtime": 1785162988.431332,
+    "ast_hash": "0965fb2afd9b54791fc5cb07c689317e",
+    "semantic_hash": "0965fb2afd9b54791fc5cb07c689317e"
+  },
+  "Src/TailwindMvc.Web/Views/Account/Register.cshtml": {
+    "mtime": 1785162793.7163181,
+    "ast_hash": "9dd3be88ed35c513a7983ab26e418c1b",
+    "semantic_hash": "9dd3be88ed35c513a7983ab26e418c1b"
+  },
+  "Src/TailwindMvc.Web/Views/Home/Index.cshtml": {
+    "mtime": 1784987397.024098,
+    "ast_hash": "ad22de66acae02f38195bf948d5814a9",
+    "semantic_hash": "ad22de66acae02f38195bf948d5814a9"
+  },
+  "Src/TailwindMvc.Web/Views/Home/Privacy.cshtml": {
+    "mtime": 1784986716.6689134,
+    "ast_hash": "6ac68e2b0d9ab26bd02a905a365a2bcc",
+    "semantic_hash": "6ac68e2b0d9ab26bd02a905a365a2bcc"
+  },
+  "Src/TailwindMvc.Web/Views/Manage/ChangePassword.cshtml": {
+    "mtime": 1785162854.2963133,
+    "ast_hash": "d6332e4fa1f1ae20d381c9d40a4856c8",
+    "semantic_hash": "d6332e4fa1f1ae20d381c9d40a4856c8"
+  },
+  "Src/TailwindMvc.Web/Views/Manage/Index.cshtml": {
+    "mtime": 1785162843.5015159,
+    "ast_hash": "768ee6731aa2daefb3d402627b692644",
+    "semantic_hash": "768ee6731aa2daefb3d402627b692644"
+  },
+  "Src/TailwindMvc.Web/Views/Shared/Error.cshtml": {
+    "mtime": 1784986716.6851244,
+    "ast_hash": "939096be653d41fb8a147fb4ff36bfb5",
+    "semantic_hash": "939096be653d41fb8a147fb4ff36bfb5"
+  },
+  "Src/TailwindMvc.Web/Views/Shared/_Layout.cshtml": {
+    "mtime": 1785162911.6679492,
+    "ast_hash": "75f1623d25e12ac04eb087b1ff307b88",
+    "semantic_hash": "75f1623d25e12ac04eb087b1ff307b88"
+  },
+  "Src/TailwindMvc.Web/Views/Shared/_LoginPartial.cshtml": {
+    "mtime": 1785162858.9520025,
+    "ast_hash": "9f44dbcea54bf951aa66a0174f5fb3f6",
+    "semantic_hash": "9f44dbcea54bf951aa66a0174f5fb3f6"
+  },
+  "Src/TailwindMvc.Web/Views/Shared/_ValidationScriptsPartial.cshtml": {
+    "mtime": 1785162860.3589969,
+    "ast_hash": "4f102fa5511fd07c4a967d87d326c918",
+    "semantic_hash": "4f102fa5511fd07c4a967d87d326c918"
+  },
+  "Src/TailwindMvc.Web/Views/_ViewImports.cshtml": {
+    "mtime": 1784986716.9267614,
+    "ast_hash": "234e1258e5381a75e0b2b88234d8e258",
+    "semantic_hash": "234e1258e5381a75e0b2b88234d8e258"
+  },
+  "Src/TailwindMvc.Web/Views/_ViewStart.cshtml": {
+    "mtime": 1784986716.930948,
+    "ast_hash": "e4cd881cf745e1e88cf2c5f6eceae943",
+    "semantic_hash": "e4cd881cf745e1e88cf2c5f6eceae943"
+  },
+  "Src/TailwindMvc.Web/appsettings.Development.json": {
+    "mtime": 1784986716.7259634,
+    "ast_hash": "804b473502a4c415cf75db61c56c32aa",
+    "semantic_hash": "804b473502a4c415cf75db61c56c32aa"
+  },
+  "Src/TailwindMvc.Web/appsettings.json": {
+    "mtime": 1784986716.7322953,
+    "ast_hash": "f7e65dde4e5533740a0d57ac9355c0e8",
+    "semantic_hash": "f7e65dde4e5533740a0d57ac9355c0e8"
+  },
+  "Src/TailwindMvc.Web/package.json": {
+    "mtime": 1785161359.3525822,
+    "ast_hash": "c014499ad2c7ba33d74b8b59e1d26f18",
+    "semantic_hash": "c014499ad2c7ba33d74b8b59e1d26f18"
+  },
+  "Src/TailwindMvc.Web/postcss.config.js": {
+    "mtime": 1784984715.6297655,
+    "ast_hash": "dc6fe4d0b29285ddf7d199979fc681e9",
+    "semantic_hash": "dc6fe4d0b29285ddf7d199979fc681e9"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/ConfirmEmail.cshtml": {
+    "mtime": 1785161974.4584265,
+    "ast_hash": "ca7229f8f1afc1ce7ec21da2eb48a2e8",
+    "semantic_hash": "ca7229f8f1afc1ce7ec21da2eb48a2e8"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/ConfirmEmail.cshtml.cs": {
+    "mtime": 1785161975.3304253,
+    "ast_hash": "3f89cfd56ca616eb7dd8457d24142429",
+    "semantic_hash": "3f89cfd56ca616eb7dd8457d24142429"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/ForgotPassword.cshtml": {
+    "mtime": 1785161966.8549523,
+    "ast_hash": "0de0505b3e2f002fcaf933d63e724a93",
+    "semantic_hash": "0de0505b3e2f002fcaf933d63e724a93"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/ForgotPassword.cshtml.cs": {
+    "mtime": 1785161970.2389076,
+    "ast_hash": "251e4c604dc0dbf3dc7f4b54d2d01ec2",
+    "semantic_hash": "251e4c604dc0dbf3dc7f4b54d2d01ec2"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Login.cshtml": {
+    "mtime": 1785161858.3220882,
+    "ast_hash": "f4291c25511fe17f630c3ee90117551a",
+    "semantic_hash": "f4291c25511fe17f630c3ee90117551a"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Login.cshtml.cs": {
+    "mtime": 1785161864.420524,
+    "ast_hash": "73a0aeac1b8d94e40bfc1a536e7b8068",
+    "semantic_hash": "73a0aeac1b8d94e40bfc1a536e7b8068"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Logout.cshtml": {
+    "mtime": 1785161800.6171813,
+    "ast_hash": "bd2f27001b8b1504e33ed036f8009589",
+    "semantic_hash": "bd2f27001b8b1504e33ed036f8009589"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Logout.cshtml.cs": {
+    "mtime": 1785161801.366199,
+    "ast_hash": "a74bf036d9b88f721dd3286d7f191c9b",
+    "semantic_hash": "a74bf036d9b88f721dd3286d7f191c9b"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml": {
+    "mtime": 1785162046.5613546,
+    "ast_hash": "330a9a8311ec96c09d9052cc588e4607",
+    "semantic_hash": "330a9a8311ec96c09d9052cc588e4607"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml.cs": {
+    "mtime": 1785162052.8740025,
+    "ast_hash": "2acf0c29415cd3a99419cd076d15088a",
+    "semantic_hash": "2acf0c29415cd3a99419cd076d15088a"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Manage/Index.cshtml": {
+    "mtime": 1785162032.525211,
+    "ast_hash": "787a731ce5d56792d52d26626051cfc8",
+    "semantic_hash": "787a731ce5d56792d52d26626051cfc8"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Manage/Index.cshtml.cs": {
+    "mtime": 1785162038.8307142,
+    "ast_hash": "6aba9fcfe4afe3b5366d952c0323178b",
+    "semantic_hash": "6aba9fcfe4afe3b5366d952c0323178b"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Register.cshtml": {
+    "mtime": 1785161950.390515,
+    "ast_hash": "277f289e0dfef0de2fc78a3af99c3f6a",
+    "semantic_hash": "277f289e0dfef0de2fc78a3af99c3f6a"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/Account/Register.cshtml.cs": {
+    "mtime": 1785161961.6714616,
+    "ast_hash": "16f7fb4951edc65d61b0e81d2cabe60f",
+    "semantic_hash": "16f7fb4951edc65d61b0e81d2cabe60f"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/_ViewImports.cshtml": {
+    "mtime": 1785161790.590672,
+    "ast_hash": "83a98dcfab167f25c3e4bf25ecfb59f5",
+    "semantic_hash": "83a98dcfab167f25c3e4bf25ecfb59f5"
+  },
+  "Src/TailwindRazorPage.Web/Areas/Identity/Pages/_ViewStart.cshtml": {
+    "mtime": 1785161793.2613704,
+    "ast_hash": "c88a7cc37c64c075f10df93b73761066",
+    "semantic_hash": "c88a7cc37c64c075f10df93b73761066"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Error.cshtml": {
+    "mtime": 1784983302.5373092,
+    "ast_hash": "34b4b090be52ec4885be6fa2afff5c8d",
+    "semantic_hash": "34b4b090be52ec4885be6fa2afff5c8d"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Error.cshtml.cs": {
+    "mtime": 1784983317.085169,
+    "ast_hash": "24cd3d185b0d2ec3f29128490de0a230",
+    "semantic_hash": "24cd3d185b0d2ec3f29128490de0a230"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Index.cshtml": {
+    "mtime": 1784985805.448065,
+    "ast_hash": "9033644701db9f50df5298fffc353d93",
+    "semantic_hash": "9033644701db9f50df5298fffc353d93"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Index.cshtml.cs": {
+    "mtime": 1784983317.2491689,
+    "ast_hash": "9d6803614316a0ed8ea0363ba05ba972",
+    "semantic_hash": "9d6803614316a0ed8ea0363ba05ba972"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Privacy.cshtml": {
+    "mtime": 1784983302.619774,
+    "ast_hash": "b4b61a68aa14d5cd3534d6923ed304d5",
+    "semantic_hash": "b4b61a68aa14d5cd3534d6923ed304d5"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Privacy.cshtml.cs": {
+    "mtime": 1784983317.213167,
+    "ast_hash": "52fda8d1d331897d2c7f3063e9ff60a6",
+    "semantic_hash": "52fda8d1d331897d2c7f3063e9ff60a6"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Shared/_Layout.cshtml": {
+    "mtime": 1785162086.545351,
+    "ast_hash": "76060fd90f5d81bfe19287e340c3b2aa",
+    "semantic_hash": "76060fd90f5d81bfe19287e340c3b2aa"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Shared/_LoginPartial.cshtml": {
+    "mtime": 1785161798.5934343,
+    "ast_hash": "9287e9bc27ec35295bd3cd67a7fd2a78",
+    "semantic_hash": "9287e9bc27ec35295bd3cd67a7fd2a78"
+  },
+  "Src/TailwindRazorPage.Web/Pages/Shared/_ValidationScriptsPartial.cshtml": {
+    "mtime": 1785162082.8127494,
+    "ast_hash": "4f102fa5511fd07c4a967d87d326c918",
+    "semantic_hash": "4f102fa5511fd07c4a967d87d326c918"
+  },
+  "Src/TailwindRazorPage.Web/Pages/_ViewImports.cshtml": {
+    "mtime": 1784983302.6520271,
+    "ast_hash": "66cd3adf75ff6ef98a5108cd86545258",
+    "semantic_hash": "66cd3adf75ff6ef98a5108cd86545258"
+  },
+  "Src/TailwindRazorPage.Web/Pages/_ViewStart.cshtml": {
+    "mtime": 1784983302.6697588,
+    "ast_hash": "e4cd881cf745e1e88cf2c5f6eceae943",
+    "semantic_hash": "e4cd881cf745e1e88cf2c5f6eceae943"
+  },
+  "Src/TailwindRazorPage.Web/Program.cs": {
+    "mtime": 1785170628.6557553,
+    "ast_hash": "cb41b2ae7c27a05e2a17d6332b4cf086",
+    "semantic_hash": "cb41b2ae7c27a05e2a17d6332b4cf086"
+  },
+  "Src/TailwindRazorPage.Web/Properties/launchSettings.json": {
+    "mtime": 1784983302.6940954,
+    "ast_hash": "b5b3c9731d049a3c99bfe14a51226a1f",
+    "semantic_hash": "b5b3c9731d049a3c99bfe14a51226a1f"
+  },
+  "Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj": {
+    "mtime": 1785164339.4782972,
+    "ast_hash": "3fa3b4272a4b3f4f828f86a3999993fc",
+    "semantic_hash": "3fa3b4272a4b3f4f828f86a3999993fc"
+  },
+  "Src/TailwindRazorPage.Web/appsettings.Development.json": {
+    "mtime": 1784983301.8178983,
+    "ast_hash": "20b1e3cadcca09702635c78d877a5d5b",
+    "semantic_hash": "20b1e3cadcca09702635c78d877a5d5b"
+  },
+  "Src/TailwindRazorPage.Web/appsettings.json": {
+    "mtime": 1785170226.069398,
+    "ast_hash": "9df8673b642bf4d5a193f9f5cd80c298",
+    "semantic_hash": "9df8673b642bf4d5a193f9f5cd80c298"
+  },
+  "Src/TailwindRazorPage.Web/package.json": {
+    "mtime": 1785161358.598575,
+    "ast_hash": "9ad52fff86fd3954fb57ca438aa0afca",
+    "semantic_hash": "9ad52fff86fd3954fb57ca438aa0afca"
+  },
+  "Src/TailwindRazorPage.Web/postcss.config.js": {
+    "mtime": 1784984715.6297655,
+    "ast_hash": "dc6fe4d0b29285ddf7d199979fc681e9",
+    "semantic_hash": "dc6fe4d0b29285ddf7d199979fc681e9"
+  },
+  "Src/TailwindRazorPage.Web/tailwind.extension.json": {
+    "mtime": 1784986733.1543567,
+    "ast_hash": "5ec64b798e1d5cebfe125e7e7c04b773",
+    "semantic_hash": "5ec64b798e1d5cebfe125e7e7c04b773"
+  },
+  "aspnetcore-tailwind.slnx": {
+    "mtime": 1785162118.1847577,
+    "ast_hash": "a70ee45c31d50515ed8bb19fbf4d972a",
+    "semantic_hash": "a70ee45c31d50515ed8bb19fbf4d972a"
+  }
+}
