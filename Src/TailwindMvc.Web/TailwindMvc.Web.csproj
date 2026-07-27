@@ -20,4 +20,8 @@
 		<Exec Command="npm run css:build" />
 	</Target>
 
+	<ItemGroup>
+		<ProjectReference Include="..\TailwindIdentity.Core\TailwindIdentity.Core.csproj" />
+	</ItemGroup>
+
 </Project>

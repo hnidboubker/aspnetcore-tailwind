@@ -1,0 +1,62 @@
+@model TailwindMvc.Web.Controllers.ProfileViewModel
+@{
+    ViewData["Title"] = "Mon profil";
+}
+
+<div class="min-h-screen bg-gray-50">
+    <div class="mx-auto max-w-2xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="mb-8">
+            <h1 class="text-2xl font-bold tracking-tight text-gray-900">Mon profil</h1>
+            <p class="mt-2 text-sm text-gray-600">Gérez vos informations personnelles.</p>
+        </div>
+
+        <form method="post" class="space-y-6">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="rounded-lg bg-red-50 p-4 text-sm text-red-700" role="alert"></div>
+
+            @if (!string.IsNullOrEmpty(ViewBag.StatusMessage as string))
+            {
+                <div class="rounded-lg bg-emerald-50 p-4 text-sm text-emerald-700">
+                    @ViewBag.StatusMessage
+                </div>
+            }
+
+            <div class="rounded-xl bg-white shadow-sm ring-1 ring-gray-900/5 p-6 space-y-6">
+                <div>
+                    <label asp-for="FirstName" class="block text-sm font-medium leading-6 text-gray-900">Prénom</label>
+                    <input asp-for="FirstName" autocomplete="given-name"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                    <span asp-validation-for="FirstName" class="mt-1 text-sm text-red-600"></span>
+                </div>
+
+                <div>
+                    <label asp-for="LastName" class="block text-sm font-medium leading-6 text-gray-900">Nom</label>
+                    <input asp-for="LastName" autocomplete="family-name"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                    <span asp-validation-for="LastName" class="mt-1 text-sm text-red-600"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                    <input asp-for="Email" disabled
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-500 shadow-sm ring-1 ring-inset ring-gray-200 bg-gray-50 sm:text-sm sm:leading-6" />
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <a asp-action="ChangePassword" class="text-sm font-semibold text-emerald-600 hover:text-emerald-500 transition-colors">
+                    Changer le mot de passe
+                </a>
+
+                <button type="submit"
+                        class="rounded-lg bg-emerald-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 transition-colors">
+                    Sauvegarder
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

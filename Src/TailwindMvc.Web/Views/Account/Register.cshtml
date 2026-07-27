@@ -1,0 +1,72 @@
+@model TailwindMvc.Web.Controllers.RegisterViewModel
+@{
+    ViewData["Title"] = "Inscription";
+}
+
+<div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Inscription</h1>
+            <p class="mt-2 text-sm text-gray-600">
+                Déjà un compte ?
+                <a asp-action="Login" class="font-semibold text-emerald-600 hover:text-emerald-500 transition-colors">
+                    Se connecter
+                </a>
+            </p>
+        </div>
+
+        <form method="post" class="mt-8 space-y-6">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="rounded-lg bg-red-50 p-4 text-sm text-red-700" role="alert"></div>
+
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label asp-for="FirstName" class="block text-sm font-medium leading-6 text-gray-900">Prénom</label>
+                        <input asp-for="FirstName" autocomplete="given-name"
+                               class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                        <span asp-validation-for="FirstName" class="mt-1 text-sm text-red-600"></span>
+                    </div>
+                    <div>
+                        <label asp-for="LastName" class="block text-sm font-medium leading-6 text-gray-900">Nom</label>
+                        <input asp-for="LastName" autocomplete="family-name"
+                               class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                        <span asp-validation-for="LastName" class="mt-1 text-sm text-red-600"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label asp-for="Email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                    <input asp-for="Email" autocomplete="username"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                    <span asp-validation-for="Email" class="mt-1 text-sm text-red-600"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Password" class="block text-sm font-medium leading-6 text-gray-900">Mot de passe</label>
+                    <input asp-for="Password" autocomplete="new-password"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                    <span asp-validation-for="Password" class="mt-1 text-sm text-red-600"></span>
+                </div>
+
+                <div>
+                    <label asp-for="ConfirmPassword" class="block text-sm font-medium leading-6 text-gray-900">Confirmer le mot de passe</label>
+                    <input asp-for="ConfirmPassword" autocomplete="new-password"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                    <span asp-validation-for="ConfirmPassword" class="mt-1 text-sm text-red-600"></span>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit"
+                        class="flex w-full justify-center rounded-lg bg-emerald-600 px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 transition-colors">
+                    S'inscrire
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
