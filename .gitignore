@@ -50,6 +50,9 @@ Generated\ Files/
 agents/
 *.agent
 
+graphify-out/*
+!graphify-out/.gitkeep
+
 # NUnit
 *.VisualState.xml
 TestResult.xml
