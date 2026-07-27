@@ -27,7 +27,7 @@ Whether you're starting a new project or exploring Tailwind CSS with ASP.NET Cor
 ## Available Templates
 
 | Template | Description |
-|----------|-------------|
+| ---------- | ------------- |
 | Razor Pages | ASP.NET Core Razor Pages + custom Identity UI |
 | MVC | ASP.NET Core MVC + custom Identity UI |
 | Blazor | ASP.NET Core Blazor WebAssembly + custom Identity UI |
@@ -43,7 +43,7 @@ Each web template includes a **custom Identity UI** built with Tailwind CSS, rep
 ### Pages Included
 
 | Page | Route | Description |
-|------|-------|-------------|
+| ------ | ------- | ------------- |
 | Login | `/Identity/Account/Login` | Email + password + remember me |
 | Register | `/Identity/Account/Register` | First name, last name, email, password |
 | Forgot Password | `/Identity/Account/ForgotPassword` | Email input for reset link |
@@ -141,8 +141,7 @@ Configure SMTP settings in `appsettings.json`:
 
 ## Project Structure
 
-```
-Src/
+```Src/
 ├── TailwindIdentity.Core/          # Shared Identity library
 │   ├── Models/                     # ApplicationUser, ApplicationRole
 │   ├── Data/                       # ApplicationDbContext
@@ -163,8 +162,7 @@ Src/
 
 ## Frontend Build Pipeline
 
-```
-npm install
+```npm install
         │
         ▼
 Install dependencies
