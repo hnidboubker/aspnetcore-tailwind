@@ -1,0 +1,62 @@
+@using TailwindBlazor.Web.Client.Components.Account
+@inject IdentityAuthenticationStateProvider AuthStateProvider
+@inject NavigationManager Navigation
+
+@if (_isAuthenticated)
+{
+    <div class="flex items-center gap-4">
+        <a href="/manage"
+           class="text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors">
+            @_firstName @_lastName
+        </a>
+        <button @onclick="Logout"
+                class="text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors">
+            Déconnexion
+        </button>
+    </div>
+}
+else
+{
+    <div class="flex items-center gap-3">
+        <a href="/login"
+           class="text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors">
+            Connexion
+        </a>
+        <a href="/register"
+           class="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 transition-colors">
+            Inscription
+        </a>
+    </div>
+}
+
+@code {
+    private bool _isAuthenticated;
+    private string _firstName = "";
+    private string _lastName = "";
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? AuthenticationState { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthenticationState != null)
+        {
+            var state = await AuthenticationState;
+            _isAuthenticated = state.User.Identity?.IsAuthenticated == true;
+
+            if (_isAuthenticated)
+            {
+                var firstNameClaim = state.User.FindFirst("firstName");
+                var lastNameClaim = state.User.FindFirst("lastName");
+                _firstName = firstNameClaim?.Value ?? "";
+                _lastName = lastNameClaim?.Value ?? "";
+            }
+        }
+    }
+
+    private async Task Logout()
+    {
+        await AuthStateProvider.Logout();
+        Navigation.NavigateTo("/");
+    }
+}

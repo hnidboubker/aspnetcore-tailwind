@@ -1,0 +1,110 @@
+@page "/register"
+@rendermode InteractiveWebAssembly
+@using TailwindBlazor.Web.Client.Components.Account
+@inject IdentityAuthenticationStateProvider AuthStateProvider
+@inject NavigationManager Navigation
+
+<PageTitle>Inscription</PageTitle>
+
+<div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8">
+        <div class="text-center">
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Inscription</h1>
+            <p class="mt-2 text-sm text-gray-600">
+                Déjà un compte ?
+                <a href="/login" class="font-semibold text-emerald-600 hover:text-emerald-500 transition-colors">
+                    Se connecter
+                </a>
+            </p>
+        </div>
+
+        <EditForm Model="this" OnValidSubmit="HandleRegister" class="mt-8 space-y-6">
+            @if (_errors.Length > 0)
+            {
+                <div class="rounded-lg bg-red-50 p-4 text-sm text-red-700">
+                    <ul class="list-disc list-inside">
+                        @foreach (var error in _errors)
+                        {
+                            <li>@error</li>
+                        }
+                    </ul>
+                </div>
+            }
+
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Prénom</label>
+                        <input @bind="_firstName" type="text" autocomplete="given-name"
+                               class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Nom</label>
+                        <input @bind="_lastName" type="text" autocomplete="family-name"
+                               class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                    <input @bind="_email" type="email" autocomplete="username"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium leading-6 text-gray-900">Mot de passe</label>
+                    <input @bind="_password" type="password" autocomplete="new-password"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium leading-6 text-gray-900">Confirmer le mot de passe</label>
+                    <input @bind="_confirmPassword" type="password" autocomplete="new-password"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" disabled="@_isLoading"
+                        class="flex w-full justify-center rounded-lg bg-emerald-600 px-3 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 transition-colors disabled:opacity-50">
+                    @(_isLoading ? "Inscription en cours..." : "S'inscrire")
+                </button>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    private string _firstName = "";
+    private string _lastName = "";
+    private string _email = "";
+    private string _password = "";
+    private string _confirmPassword = "";
+    private bool _isLoading;
+    private string[] _errors = Array.Empty<string>();
+
+    private async Task HandleRegister()
+    {
+        if (_password != _confirmPassword)
+        {
+            _errors = new[] { "Les mots de passe ne correspondent pas." };
+            return;
+        }
+
+        _isLoading = true;
+        _errors = Array.Empty<string>();
+
+        var (success, errors) = await AuthStateProvider.Register(_firstName, _lastName, _email, _password);
+
+        if (success)
+        {
+            Navigation.NavigateTo("/");
+        }
+        else
+        {
+            _errors = errors.Length > 0 ? errors : new[] { "Erreur lors de l'inscription." };
+        }
+
+        _isLoading = false;
+    }
+}

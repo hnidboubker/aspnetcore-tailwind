@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TailwindBlazor.Web.Client\TailwindBlazor.Web.Client.csproj" />
+    <ProjectReference Include="..\..\TailwindIdentity.Core\TailwindIdentity.Core.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.29" />
   </ItemGroup>
 
