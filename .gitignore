@@ -383,3 +383,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Progress tracker files (local working documents)
+PROSS.md
