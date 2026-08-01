@@ -40,19 +40,19 @@ A solution of **independent ASP.NET Core starter templates** integrating Tailwin
 
 | Project | Auth UI location | Notes |
 |---|---|---|
-| `TailwindRazorPage.Web` | `Areas/Identity/Pages/Account/` + `Areas/Identity/Pages/Account/Manage/` | Razor Pages |
+| `TailwindRazorPage.Web` | `Pages/Account/` (`SignInPage`, `SignUpPage`, `PasswordForgot`, `ConfirmEmail`, `SendConfirmation`) | Razor Pages. Migrated off `TailwindIdentity.Core` to the **Hasim** library family (`AppUser`/`AppRole` from `Hasim.Core`; `DefaultContext` in `Persistence/` extends Hasim's `AuditIdentityContext`). Login uses **UserNameOrEmail**. `Program.cs` uses Hasim Injectify module + `AddIdentity<AppUser, AppRole>()`. Layout has a collapsible sidebar (280px / 70px). |
 | `TailwindMvc.Web` | `Controllers/AccountController.cs`, `Controllers/ManageController.cs`, `Views/Account/`, `Views/Manage/` | `[Authorize]` on `ManageController` |
 | `TailwindBlazor.Web` | Server: `Components/Account/AccountEndpoints.cs` (minimal API); Client: `Components/Account/` (Login.razor, Register.razor, ForgotPassword.razor, Manage/Index.razor, Manage/ChangePassword.razor, LoginDisplay.razor, IdentityAuthenticationStateProvider.cs) | Uses `Microsoft.AspNetCore.Components.WebAssembly.Authentication` 8.0.11 in Client |
 | `TailwindMaui.Web` | None | Out of scope for Identity |
 
 ## Razor Pages partial path quirk
 
-**`<partial name="_LoginPartial" />` does NOT search Areas.** Despite `area="Identity"` on tag helpers, partial resolution searches standard shared folders only:
+**`<partial name="_LoginPartial" />` does NOT search Areas.** It resolves from standard shared folders only:
 - `/Pages/_LoginPartial.cshtml`
 - `/Pages/Shared/_LoginPartial.cshtml`
 - `/Views/Shared/_LoginPartial.cshtml`
 
-Place the partial in `Pages/Shared/` even when its content is Identity-related. Tag helpers inside the partial still need `asp-area="Identity"` for correct routing. The fix was already applied to `TailwindRazorPage.Web/Pages/Shared/_LoginPartial.cshtml`.
+The partial lives in `TailwindRazorPage.Web/Pages/Shared/_LoginPartial.cshtml`. **Note:** The Razor Page template no longer uses an `Identity` Area — the `Areas/Identity/Pages/Account/` folder was removed and account pages now live under `Pages/Account/`. Since pages are no longer in an Area, `asp-area` is not required on their tag helpers.
 
 ## Blazor client gotchas
 

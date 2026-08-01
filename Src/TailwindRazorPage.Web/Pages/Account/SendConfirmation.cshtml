@@ -1,0 +1,48 @@
+@page
+@model SendConfirmationModel
+@{
+    ViewData["Title"] = "Renvoyer la confirmation";
+}
+
+<div class="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-12">
+
+    <div class="mx-auto w-full max-w-md">
+        <h1 class="mb-2 text-2xl font-bold text-gray-900">Renvoyer un e-mail de confirmation</h1>
+        <p class="mb-8 text-sm text-gray-600">
+            Saisissez votre adresse e-mail pour recevoir un nouveau lien de confirmation.
+        </p>
+
+        @if (!string.IsNullOrEmpty(Model.ConfirmationMessage))
+        {
+            <div class="mb-4 rounded-lg bg-emerald-50 px-4 py-3 text-sm text-emerald-800 ring-1 ring-emerald-900/10">
+                @Model.ConfirmationMessage
+                @if (!string.IsNullOrEmpty(Model.ConfirmLink))
+                {
+                    <a href="@Model.ConfirmLink" class="mt-2 block font-semibold text-emerald-700 underline">Cliquez ici pour confirmer</a>
+                }
+            </div>
+        }
+
+        <div class="rounded-xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="mb-4 text-sm text-red-600"></div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.Email" class="mb-1 block text-sm font-medium text-gray-700"></label>
+                    <input asp-for="Input.Email" autocomplete="email"
+                           class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500" />
+                    <span asp-validation-for="Input.Email" class="text-xs text-red-600"></span>
+                </div>
+
+                <button type="submit"
+                        class="w-full rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
+                    Renvoyer
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

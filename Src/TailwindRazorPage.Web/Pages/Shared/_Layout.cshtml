@@ -1,30 +1,122 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TailwindRazorPage.Web</title>
     <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
-
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900">
 
-    <nav class="bg-white shadow-sm ring-1 ring-gray-900/5">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="flex h-16 items-center justify-between">
-                <a asp-page="/Index" class="text-lg font-bold text-gray-900">
-                    TailwindRazorPage
-                </a>
-                <partial name="_LoginPartial" area="Identity" />
+    <div class="flex min-h-screen">
+
+        <!-- Sidebar -->
+        <aside id="sidebar"
+               class="fixed inset-y-0 left-0 z-40 flex w-[280px] flex-col overflow-hidden border-r border-gray-200 bg-white shadow-sm transition-[width] duration-300 ease-in-out">
+
+            <!-- Brand -->
+            <div class="flex h-16 shrink-0 items-center gap-3 border-b border-gray-100 px-4">
+                <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-emerald-600 text-sm font-bold text-white">
+                    TR
+                </div>
+                <div id="brand-text" class="min-w-0 flex-1 whitespace-nowrap transition-opacity duration-200">
+                    <div class="text-sm font-bold text-gray-900">TailwindRazorPage</div>
+                    <div class="text-xs text-gray-500">Razor Pages</div>
+                </div>
+                <button id="toggle-sidebar" type="button"
+                        class="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                        aria-label="Basculer la barre latérale">
+                    <i data-lucide="panel-left-close" class="h-5 w-5"></i>
+                </button>
             </div>
-        </div>
-    </nav>
 
-    @RenderBody()
+            <!-- Nav -->
+            <nav class="flex-1 space-y-1 overflow-y-auto px-3 py-4">
+                <a asp-page="/Index" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700">
+                    <i data-lucide="home" class="h-5 w-5 shrink-0"></i>
+                    <span class="sidebar-label whitespace-nowrap">Accueil</span>
+                </a>
+                <a asp-page="/Privacy" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700">
+                    <i data-lucide="shield" class="h-5 w-5 shrink-0"></i>
+                    <span class="sidebar-label whitespace-nowrap">Confidentialité</span>
+                </a>
+
+                <div class="sidebar-label pt-4 text-xs font-semibold uppercase tracking-wider text-gray-400">Compte</div>
+
+                <a asp-page="/Account/SignInPage" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700">
+                    <i data-lucide="log-in" class="h-5 w-5 shrink-0"></i>
+                    <span class="sidebar-label whitespace-nowrap">Connexion</span>
+                </a>
+                <a asp-page="/Account/SignUpPage" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700">
+                    <i data-lucide="user-plus" class="h-5 w-5 shrink-0"></i>
+                    <span class="sidebar-label whitespace-nowrap">Inscription</span>
+                </a>
+                <a asp-page="/Account/PasswordForgot" class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700">
+                    <i data-lucide="key-round" class="h-5 w-5 shrink-0"></i>
+                    <span class="sidebar-label whitespace-nowrap">Mot de passe oublié</span>
+                </a>
+            </nav>
+
+            <!-- Footer / user -->
+            <div class="shrink-0 border-t border-gray-100 p-3">
+                <partial name="_LoginPartial" />
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <div class="flex min-w-0 flex-1 flex-col pl-[280px] transition-[padding] duration-300 ease-in-out" id="main">
+            <main class="flex-1">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
 
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-            lucide.createIcons();
+        lucide.createIcons();
+
+        (function () {
+            const sidebar = document.getElementById('sidebar');
+            const main = document.getElementById('main');
+            const brandText = document.getElementById('brand-text');
+            const toggleBtn = document.getElementById('toggle-sidebar');
+            const labels = document.querySelectorAll('.sidebar-label');
+            const icon = toggleBtn ? toggleBtn.querySelector('i') : null;
+
+            let collapsed = false;
+
+            function applyState() {
+                if (!sidebar) return;
+                sidebar.classList.toggle('w-[70px]', collapsed);
+                sidebar.classList.toggle('w-[280px]', !collapsed);
+
+                if (main) {
+                    main.classList.toggle('pl-[70px]', collapsed);
+                    main.classList.toggle('pl-[280px]', !collapsed);
+                }
+
+                if (brandText) {
+                    brandText.classList.toggle('opacity-0', collapsed);
+                    brandText.classList.toggle('pointer-events-none', collapsed);
+                }
+
+                labels.forEach(function (el) {
+                    el.classList.toggle('hidden', collapsed);
+                });
+
+                if (icon) {
+                    icon.setAttribute('data-lucide', collapsed ? 'panel-left-open' : 'panel-left-close');
+                    lucide.createIcons();
+                }
+            }
+
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function () {
+                    collapsed = !collapsed;
+                    applyState();
+                });
+            }
+        })();
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
