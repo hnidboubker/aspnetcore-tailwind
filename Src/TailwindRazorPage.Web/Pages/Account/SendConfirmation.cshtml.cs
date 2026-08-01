@@ -1,28 +1,30 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Text.Encodings.Web;
 using Hasim.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using TailwindRazorPage.Web.Services;
 
 namespace TailwindRazorPage.Web.Pages.Account;
 
 public class SendConfirmationModel : PageModel
 {
     private readonly UserManager<AppUser> _userManager;
+    private readonly IEmailService _emailService;
 
-    public SendConfirmationModel(UserManager<AppUser> userManager)
+    public SendConfirmationModel(UserManager<AppUser> userManager, IEmailService emailService)
     {
         _userManager = userManager;
+        _emailService = emailService;
     }
 
     [BindProperty]
     public InputModel Input { get; set; } = new();
 
     public string? ConfirmationMessage { get; set; }
-
-    public string? ConfirmLink { get; set; }
 
     public class InputModel
     {
@@ -51,17 +53,28 @@ public class SendConfirmationModel : PageModel
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
 
-            ConfirmLink = Url.Page(
+            var confirmLink = Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
                 values: new { userId = user.Id, code },
                 protocol: Request.Scheme);
 
-            ConfirmationMessage = "Un lien de confirmation a été généré.";
+            var subject = "Confirmez votre adresse e-mail";
+            var html = $"""
+                <h2>Confirmation d'adresse e-mail</h2>
+                <p>Bonjour,</p>
+                <p>Merci de confirmer votre adresse e-mail en cliquant sur le lien ci-dessous :</p>
+                <p><a href="{HtmlEncoder.Default.Encode(confirmLink ?? string.Empty)}">Confirmer mon adresse e-mail</a></p>
+                <p>Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail.</p>
+                """;
+
+            await _emailService.SendAsync(Input.Email, subject, html);
+
+            ConfirmationMessage = "Un e-mail de confirmation vous a été envoyé.";
         }
         else
         {
-            ConfirmationMessage = "Si un compte est associé à cette adresse, un lien de confirmation sera fourni.";
+            ConfirmationMessage = "Si un compte est associé à cette adresse, un e-mail de confirmation sera envoyé.";
         }
 
         return Page();

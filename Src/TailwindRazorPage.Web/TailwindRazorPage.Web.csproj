@@ -19,6 +19,7 @@
 		<PackageReference Include="Hasim.EntityFrameworkCore" Version="0.1.1" />
 		<PackageReference Include="Hasim.Injectify" Version="0.1.2" />
 		<PackageReference Include="Hasim.Auditify" Version="0.1.5" />
+		<PackageReference Include="MailKit" Version="4.17.0" />
 	</ItemGroup>
 
 	<ItemGroup>

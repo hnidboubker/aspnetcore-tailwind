@@ -1,12 +1,19 @@
 using Hasim.Core.Entities;
 using Injectify.Extensions;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using TailwindRazorPage.Web.Persistence;
+using TailwindRazorPage.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+
+// SMTP email configuration (section "Email").
+builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection(EmailOptions.SectionName));
+builder.Services.AddScoped<IEmailService, MailKitEmailSender>();
+builder.Services.AddScoped<IEmailSender, MailKitEmailSender>();
 
 // Hasim EF Core module: registers AuditIdentityContext (via DefaultContext)
 // with SQL Server + DefaultConnection + audit interceptor.
@@ -26,7 +33,17 @@ builder.Services.AddDbContext<DefaultContext>(options =>
 builder.InjectifyApplication();
 
 builder.Services
-    .AddIdentity<AppUser, AppRole>()
+    .AddIdentity<AppUser, AppRole>(options =>
+    {
+        options.SignIn.RequireConfirmedEmail =
+            builder.Configuration.GetValue<bool>("Identity:RequireConfirmedEmail");
+
+        options.User.RequireUniqueEmail = true;
+        options.Password.RequiredLength = 6;
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+        options.Lockout.MaxFailedAccessAttempts = 5;
+        options.Lockout.AllowedForNewUsers = true;
+    })
     .AddEntityFrameworkStores<DefaultContext>()
     .AddDefaultTokenProviders();
 

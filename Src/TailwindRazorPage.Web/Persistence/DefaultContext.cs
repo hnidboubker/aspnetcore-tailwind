@@ -1,5 +1,6 @@
 using Hasim.EntityFrameworkCore.Persistence;
 using Microsoft.EntityFrameworkCore;
+using TailwindRazorPage.Web.Persistence.Models;
 
 namespace TailwindRazorPage.Web.Persistence;
 
@@ -13,4 +14,6 @@ public class DefaultContext : AuditIdentityContext
         : base(options)
     {
     }
+
+    public DbSet<EmailMessage> EmailMessages => Set<EmailMessage>();
 }
