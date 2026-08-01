@@ -1,16 +1,14 @@
-@using TailwindIdentity.Core.Models
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+@using Hasim.Core.Entities
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
     <div class="flex items-center gap-4">
-        <a asp-area="Identity" asp-page="/Account/Manage/Index"
-           class="text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors">
+        <span class="text-sm font-medium text-gray-700">
             @UserManager.GetUserName(User)
-        </a>
-        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })"
-              method="post">
+        </span>
+        <form asp-page="/Account/SignInPage" asp-page-handler="Logout" method="post">
             <button type="submit"
                     class="text-sm font-medium text-gray-500 hover:text-emerald-600 transition-colors">
                 Déconnexion
@@ -21,11 +19,11 @@
 else
 {
     <div class="flex items-center gap-3">
-        <a asp-area="Identity" asp-page="/Account/Login"
+        <a asp-page="/Account/SignInPage"
            class="text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors">
             Connexion
         </a>
-        <a asp-area="Identity" asp-page="/Account/Register"
+        <a asp-page="/Account/SignUpPage"
            class="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600 transition-colors">
             Inscription
         </a>

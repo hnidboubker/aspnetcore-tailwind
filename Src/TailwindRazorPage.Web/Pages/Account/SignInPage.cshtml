@@ -1,0 +1,66 @@
+@page
+@model SignInPageModel
+@{
+    ViewData["Title"] = "Connexion";
+}
+
+<div class="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-12">
+
+    <div class="mx-auto w-full max-w-md">
+        <h1 class="mb-2 text-2xl font-bold text-gray-900">Connexion</h1>
+        <p class="mb-8 text-sm text-gray-600">
+            Utilisez votre nom d'utilisateur ou votre adresse e-mail.
+        </p>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700 ring-1 ring-red-900/10">
+                @Model.ErrorMessage
+            </div>
+        }
+
+        <div class="rounded-xl bg-white p-8 shadow-sm ring-1 ring-gray-900/5">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="mb-4 text-sm text-red-600"></div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.UserNameOrEmail" class="mb-1 block text-sm font-medium text-gray-700"></label>
+                    <input asp-for="Input.UserNameOrEmail" autocomplete="username"
+                           class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500" />
+                    <span asp-validation-for="Input.UserNameOrEmail" class="text-xs text-red-600"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Input.Password" class="mb-1 block text-sm font-medium text-gray-700"></label>
+                    <input asp-for="Input.Password" autocomplete="current-password"
+                           class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500" />
+                    <span asp-validation-for="Input.Password" class="text-xs text-red-600"></span>
+                </div>
+
+                <div class="mb-4 flex items-center justify-between">
+                    <label class="flex items-center gap-2 text-sm text-gray-700">
+                        <input asp-for="Input.RememberMe" class="h-4 w-4 rounded border-gray-300 text-emerald-600 focus:ring-emerald-500" />
+                        Se souvenir de moi
+                    </label>
+                    <a asp-page="/Account/PasswordForgot" class="text-sm font-medium text-emerald-600 hover:text-emerald-500">
+                        Mot de passe oublié ?
+                    </a>
+                </div>
+
+                <button type="submit"
+                        class="w-full rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">
+                    Se connecter
+                </button>
+            </form>
+        </div>
+
+        <p class="mt-6 text-center text-sm text-gray-600">
+            Pas encore de compte ?
+            <a asp-page="/Account/SignUpPage" class="font-medium text-emerald-600 hover:text-emerald-500">Inscription</a>
+        </p>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
