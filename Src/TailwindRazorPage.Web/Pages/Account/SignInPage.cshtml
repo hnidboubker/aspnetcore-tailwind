@@ -2,9 +2,10 @@
 @model SignInPageModel
 @{
     ViewData["Title"] = "Connexion";
+    Layout = "_LayoutAccount";
 }
 
-<div class="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-12">
+<div class="mx-auto w-full max-w-md">
 
     <div class="mx-auto w-full max-w-md">
         <h1 class="mb-2 text-2xl font-bold text-gray-900">Connexion</h1>
@@ -54,11 +55,10 @@
             </form>
         </div>
 
-        <p class="mt-6 text-center text-sm text-gray-600">
-            Pas encore de compte ?
-            <a asp-page="/Account/SignUpPage" class="font-medium text-emerald-600 hover:text-emerald-500">Inscription</a>
-        </p>
-    </div>
+    <p class="mt-6 text-center text-sm text-gray-600">
+        Pas encore de compte ?
+        <a asp-page="/Account/SignUpPage" class="font-medium text-emerald-600 hover:text-emerald-500">Inscription</a>
+    </p>
 </div>
 
 @section Scripts {

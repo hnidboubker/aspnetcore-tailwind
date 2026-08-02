@@ -1,11 +1,10 @@
 @page
 @{
     ViewData["Title"] = "Compte verrouillé";
+    Layout = "_LayoutAccount";
 }
 
-<div class="mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 py-12">
-
-    <div class="mx-auto w-full max-w-md">
+<div class="mx-auto w-full max-w-md">
         <div class="rounded-xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-900/5">
             <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100">
                 <i data-lucide="lock" class="h-6 w-6 text-red-600"></i>
@@ -20,5 +19,4 @@
                 Retour à la connexion
             </a>
         </div>
-    </div>
 </div>

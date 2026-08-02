@@ -3,6 +3,7 @@ using Injectify.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using TailwindRazorPage.Web.Data;
 using TailwindRazorPage.Web.Persistence;
 using TailwindRazorPage.Web.Services;
 
@@ -48,6 +49,12 @@ builder.Services
     .AddDefaultTokenProviders();
 
 var app = builder.Build();
+
+// Seed database
+using (var scope = app.Services.CreateScope())
+{
+    await DatabaseSeeder.SeedAsync(scope.ServiceProvider);
+}
 
 if (!app.Environment.IsDevelopment())
 {
