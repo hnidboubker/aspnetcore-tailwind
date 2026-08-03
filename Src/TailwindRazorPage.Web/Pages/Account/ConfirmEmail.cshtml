@@ -1,0 +1,31 @@
+@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirmation de l'e-mail";
+    Layout = "_LayoutAccount";
+}
+
+<div class="mx-auto w-full max-w-md">
+        <h1 class="mb-2 text-2xl font-bold text-gray-900">Confirmation de l'e-mail</h1>
+
+        @if (Model.Confirmed)
+        {
+            <div class="rounded-xl bg-emerald-50 p-8 text-sm text-emerald-800 ring-1 ring-emerald-900/10">
+                <p>Votre adresse e-mail a bien été confirmée.</p>
+                <a asp-page="/Account/SignInPage"
+                   class="mt-4 inline-block font-semibold text-emerald-700 underline">
+                    Se connecter
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="rounded-xl bg-red-50 p-8 text-sm text-red-700 ring-1 ring-red-900/10">
+                <p>La confirmation de votre e-mail a échoué. Le lien est invalide ou expiré.</p>
+                <a asp-page="/Account/SendConfirmation"
+                   class="mt-4 inline-block font-semibold text-red-700 underline">
+                    Renvoyer un e-mail de confirmation
+                </a>
+            </div>
+        }
+</div>

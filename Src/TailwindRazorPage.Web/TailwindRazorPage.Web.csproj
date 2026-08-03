@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFrameworks>net8.0</TargetFrameworks>
@@ -8,18 +8,20 @@
 		<UseAppHost>false</UseAppHost>
 	</PropertyGroup>
 
-	
 	<ItemGroup>
 		<UpToDateCheckBuilt Include="wwwroot/css/app.css" Set="Css" />
 		<UpToDateCheckBuilt Include="postcss.config.js" Set="Css" />
 	</ItemGroup>
 
-	
 	<ItemGroup>
-		<ProjectReference Include="..\TailwindIdentity.Core\TailwindIdentity.Core.csproj" />
+		<PackageReference Include="Hasim" Version="0.1.1" />
+		<PackageReference Include="Hasim.Core" Version="0.1.0" />
+		<PackageReference Include="Hasim.EntityFrameworkCore" Version="0.1.1" />
+		<PackageReference Include="Hasim.Injectify" Version="0.1.2" />
+		<PackageReference Include="Hasim.Auditify" Version="0.1.5" />
+		<PackageReference Include="MailKit" Version="4.17.0" />
 	</ItemGroup>
 
-	
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

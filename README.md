@@ -44,19 +44,35 @@ Each web template includes a **custom Identity UI** built with Tailwind CSS, rep
 
 | Page | Route | Description |
 | ------ | ------- | ------------- |
-| Login | `/Identity/Account/Login` | Email + password + remember me |
-| Register | `/Identity/Account/Register` | First name, last name, email, password |
-| Forgot Password | `/Identity/Account/ForgotPassword` | Email input for reset link |
-| Profile | `/Identity/Account/Manage` | View/edit first name, last name |
-| Change Password | `/Identity/Account/Manage/ChangePassword` | Old/new/confirm password |
+| Login | `/Account/SignInPage` | UserName/Email + password + remember me |
+| Register | `/Account/SignUpPage` | First name, last name, email, password |
+| Forgot Password | `/Account/PasswordForgot` | Email input for reset link |
+| Reset Password | `/Account/ResetPassword` | Reset password with token |
+| Confirm Email | `/Account/ConfirmEmail` | Email confirmation handler |
+| Send Confirmation | `/Account/SendConfirmation` | Resend confirmation email |
+| 2FA Login | `/Account/LoginWith2fa` | Two-factor authentication |
+| Lockout | `/Account/Lockout` | Account lockout notice |
 
 ### Design
 
+- **Two layouts:**
+  - `_Layout.cshtml` — Main layout with collapsible sidebar for authenticated pages (Index, Privacy)
+  - `_LayoutAccount.cshtml` — Minimal layout with footer only (no header/sidebar) for Account and Legal pages
 - Clean white cards on light gray background
 - Emerald green accent color (`bg-emerald-600`)
 - Rounded corners, subtle shadows
 - Responsive design
 - Form validation with error messages
+- **Index page requires authentication** — redirects to login if not authenticated
+
+### Legal Pages
+
+- CGV (Conditions Générales de Vente)
+- CGU (Conditions Générales d'Utilisation)
+- Confidentialité (Privacy Policy)
+- RGPD (GDPR Compliance)
+
+All legal pages use `_LayoutAccount` layout. Accessible from footer/sidebar links in both layouts.
 
 ---
 
@@ -142,13 +158,13 @@ Configure SMTP settings in `appsettings.json`:
 ## Project Structure
 
 ```Src/
-├── TailwindIdentity.Core/          # Shared Identity library
-│   ├── Models/                     # ApplicationUser, ApplicationRole
-│   ├── Data/                       # ApplicationDbContext
-│   ├── Services/                   # MailKitEmailSender
-│   └── Migrations/                 # EF Core migrations
+├── TailwindIdentity.Core/          # Shared Identity library (deprecated)
 ├── TailwindRazorPage.Web/          # Razor Pages template
-│   └── Areas/Identity/Pages/       # Custom Identity pages
+│   ├── Pages/Account/              # Custom Identity pages (SignInPage, SignUpPage, etc.)
+│   ├── Pages/Legal/                # Legal pages (CGV, CGU, Confidentialite, RGPD)
+│   ├── Pages/Shared/               # _Layout.cshtml, _LayoutAccount.cshtml
+│   ├── Persistence/                # DefaultContext, EmailMessage model
+│   └── Services/                   # MailKitEmailSender
 ├── TailwindMvc.Web/                # MVC template
 │   ├── Controllers/                # AccountController, ManageController
 │   └── Views/Account/              # Identity views
