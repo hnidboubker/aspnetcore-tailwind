@@ -40,10 +40,12 @@ public class ConfirmEmailTests : TestContext
     [Fact]
     public void ConfirmEmail_Shows_Success_When_Confirmed()
     {
-        // Act - avec userId et code valides
-        var cut = RenderComponent<ConfirmEmail>(parameters => parameters
-            .Add(p => p.UserId, "user-1")
-            .Add(p => p.Code, "valid-code"));
+        // Arrange - définir l'URL avec la query string pour [SupplyParameterFromQuery]
+        var nav = Services.GetRequiredService<FakeNavigationManager>();
+        nav.NavigateTo("/confirm-email?userId=user-1&code=valid-code");
+
+        // Act
+        var cut = RenderComponent<ConfirmEmail>();
 
         // Assert - l'état de succès s'affiche
         cut.WaitForAssertion(() =>
