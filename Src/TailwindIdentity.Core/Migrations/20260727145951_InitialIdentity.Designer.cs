@@ -11,7 +11,7 @@ using TailwindIdentity.Core.Data;
 
 namespace TailwindIdentity.Core.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DefaultContext))]
     [Migration("20260727145951_InitialIdentity")]
     partial class InitialIdentity
     {

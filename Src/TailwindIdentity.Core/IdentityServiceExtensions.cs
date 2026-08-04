@@ -15,7 +15,7 @@ public static class IdentityServiceExtensions
         this IServiceCollection services,
         IConfiguration config)
     {
-        services.AddDbContext<ApplicationDbContext>(options =>
+        services.AddDbContext<DefaultContext>(options =>
             options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
         services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
@@ -30,7 +30,7 @@ public static class IdentityServiceExtensions
             options.User.RequireUniqueEmail = true;
             options.SignIn.RequireConfirmedEmail = config.GetValue<bool>("Identity:RequireConfirmedEmail");
         })
-        .AddEntityFrameworkStores<ApplicationDbContext>()
+        .AddEntityFrameworkStores<DefaultContext>()
         .AddDefaultTokenProviders();
 
         services.ConfigureApplicationCookie(options =>

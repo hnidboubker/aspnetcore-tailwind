@@ -10,7 +10,7 @@ using TailwindIdentity.Core.Data;
 
 namespace TailwindIdentity.Core.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DefaultContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -100,7 +100,7 @@ TailwindBlazor.Web.Client/            # Projet Client (WASM)
 - `UserManager<IdentityUser>` — Gestion des utilisateurs
 - `SignInManager<IdentityUser>` — Gestion de l'authentification
 - `IEmailSender` — Envoi d'emails
-- `ApplicationDbContext` — Base de données
+- `DefaultContext` — Base de données (IdentityDbContext)
 
 ---
 
