@@ -1,0 +1,18 @@
+{
+    "env":{
+        "ANTHROPIC_API_TOKEN": "sk-391f559607905406-052b68-0a1c32de",
+        "ANTHROPIC_BASE_URL": "http://localhost:20128/v1",
+        "ANTHROPIC_MODEL":"auto/best-free",
+    
+        "ANTHROPIC_SMALL_FAST_MODEL": "auto/best-free",
+         "ANTHROPIC_DEFAULT_OPUS_MODEL": "auto/best-free",
+        "ANTHROPIC_DEFAULT_SONNET_MODEL": "auto/best-free",
+        "ANTHROPIC_DEFAULT_HAIKU_MODEL": "auto/best-free", 
+
+        "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
+    },
+    "statusLine": {
+        "type": "command",
+        "command": "bash G:/MCS/claude-custom/.claude/statusline-command.sh"
+    }
+}
