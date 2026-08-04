@@ -1,4 +1,5 @@
 using Bunit;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 using TailwindBlazor.Web.Client.Components.Account;
 
