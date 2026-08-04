@@ -125,11 +125,14 @@ TailwindBlazor.Web.Client/            # Projet Client (WASM)
   - Génération de token de confirmation email
 - **Appels API** : `POST /account/register`
 
-### ⚠️ ForgotPassword.razor
+### ✅ ForgotPassword.razor
 - **Route** : `/forgot-password`
-- **Statut** : Stub uniquement
-- **Problème** : `HandleSubmit` ne fait que définir `_sent = true` sans appeler l'API
-- **Travail restant** : Implémenter l'appel API + envoi email
+- **Statut** : Complet (endpoint `POST /account/forgot-password` ajouté)
+- **Fonctionnalités** :
+  - Appel API via HttpClient vers `account/forgot-password`
+  - Gestion de l'état "envoyé" (`_sent`)
+  - Anti-énumération de comptes (réponse identique que l'email existe ou non)
+- **Endpoint** : `POST /account/forgot-password` (génère token + envoie email via `IEmailSender`)
 
 ### ✅ LoginDisplay.razor
 - **Route** : Aucun (composant inclus dans le layout)
@@ -248,12 +251,14 @@ TailwindBlazor.Web.Client/            # Projet Client (WASM)
   3. Affichage du résultat
 
 #### Blazor
-- **Statut** : ❌ **MANQUANT**
-- **Travail restant** :
-  1. Créer composant `ConfirmEmail.razor`
-  2. Créer endpoint `GET /account/confirm-email?userId=...&code=...`
-  3. Implémenter la validation du token
-  4. Gérer les erreurs (token invalide, expiré)
+- **Composant** : `ConfirmEmail.razor` ✅ Créé
+- **Route** : `/confirm-email?userId=...&code=...`
+- **Rendu** : Interactive WebAssembly
+- **Flux** :
+  1. Lecture des paramètres via `[SupplyParameterFromQuery]`
+  2. Appel `GET /account/confirm-email` via HttpClient
+  3. Affichage du succès ou de l'erreur
+- **Endpoint** : `GET /account/confirm-email` (valide le token via `UserManager.ConfirmEmailAsync`)
 
 ---
 
@@ -335,16 +340,17 @@ TailwindBlazor.Web.Client/            # Projet Client (WASM)
 
 | Gap | Impact | Priorité |
 |-----|--------|----------|
-| `appsettings.json` incomplet | Le projet ne démarre pas | Haute |
-| ForgotPassword est un stub | Fonctionnalité non opérationnelle | Haute |
-| ConfirmEmail manquant | Fonctionnalité non opérationnelle | Haute |
+| ~~`appsettings.json` incomplet~~ | ✅ Corrigé | — |
+| ~~ForgotPassword est un stub~~ | ✅ Endpoint + composant complétés | — |
+| ~~ConfirmEmail manquant~~ | ✅ Composant + endpoint créés | — |
+| `prompts/blazor-account.md` | ✅ Créé | — |
 
 ### 🟡 Améliorations
 
 | Gap | Impact | Priorité |
 |-----|--------|----------|
-| Tests unitaires manquants | Qualité code | Moyenne |
-| Documentation blazor-account.md | Maintenabilité | Moyenne |
+| Tests unitaires à étendre (Login, ForgotPassword, ConfirmEmail en cours) | Qualité code | Moyenne |
+| ResetPassword / ResetPasswordConfirmation non implémentés | Flow complet | Moyenne |
 | 2FA non implémenté | Sécurité | Basse |
 
 ### ✅ Complet
