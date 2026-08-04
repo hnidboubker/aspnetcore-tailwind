@@ -63,6 +63,29 @@ public static class AccountEndpoints
             return Results.Ok(new { success = true });
         });
 
+        group.MapPost("forgot-password", async (
+            HttpContext httpContext,
+            UserManager<ApplicationUser> userManager,
+            IEmailSender emailSender,
+            [FromBody] ForgotPasswordRequest request) =>
+        {
+            var user = await userManager.FindByEmailAsync(request.Email);
+
+            if (user != null)
+            {
+                var code = await userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = $"{httpContext.Request.Scheme}://{httpContext.Request.Host}/reset-password?code={Uri.EscapeDataString(code)}";
+
+                await emailSender.SendEmailAsync(
+                    request.Email,
+                    "Réinitialisation de mot de passe",
+                    $"<p>Cliquez sur <a href='{callbackUrl}'>ce lien</a> pour réinitialiser votre mot de passe.</p>");
+            }
+
+            // Toujours répondre de la même manière (anti-énumération de comptes)
+            return Results.Ok(new { success = true });
+        });
+
         group.MapGet("user", async (
             HttpContext httpContext,
             UserManager<ApplicationUser> userManager) =>
@@ -129,6 +152,7 @@ public static class AccountEndpoints
     }
 }
 
+public record ForgotPasswordRequest(string Email);
 public record LoginRequest(string Email, string Password, bool RememberMe);
 public record RegisterRequest(string FirstName, string LastName, string Email, string Password);
 public record ProfileRequest(string FirstName, string LastName);
