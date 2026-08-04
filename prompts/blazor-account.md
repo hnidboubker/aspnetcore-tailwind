@@ -360,6 +360,8 @@ TailwindBlazor.Web.Client/            # Projet Client (WASM)
 | Login | ✅ Fonctionnel |
 | Register | ✅ Fonctionnel |
 | Logout | ✅ Fonctionnel |
+| ForgotPassword | ✅ Fonctionnel (endpoint ajouté) |
+| ConfirmEmail | ✅ Créé (endpoint ajouté) |
 | Manage/Index | ✅ Fonctionnel |
 | Manage/ChangePassword | ✅ Fonctionnel |
 
