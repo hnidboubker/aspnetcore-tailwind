@@ -63,6 +63,26 @@ public static class AccountEndpoints
             return Results.Ok(new { success = true });
         });
 
+        group.MapGet("confirm-email", async (
+            UserManager<ApplicationUser> userManager,
+            [FromQuery] string? userId,
+            [FromQuery] string? code) =>
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(code))
+            {
+                return Results.BadRequest(new { error = "Paramètres manquants." });
+            }
+
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return Results.NotFound(new { error = "Utilisateur introuvable." });
+            }
+
+            var result = await userManager.ConfirmEmailAsync(user, code);
+            return Results.Ok(new { success = result.Succeeded });
+        });
+
         group.MapPost("forgot-password", async (
             HttpContext httpContext,
             UserManager<ApplicationUser> userManager,

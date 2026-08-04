@@ -1,0 +1,81 @@
+@page "/confirm-email"
+@rendermode InteractiveWebAssembly
+@inject HttpClient Http
+@inject NavigationManager Navigation
+
+<PageTitle>Confirmation d'email</PageTitle>
+
+<div class="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8 text-center">
+        @if (_loading)
+        {
+            <div class="text-sm text-gray-600">Vérification de votre adresse email...</div>
+        }
+        else if (_confirmed)
+        {
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900">Email confirmé</h1>
+                <p class="mt-4 text-sm text-gray-600">
+                    Merci d'avoir confirmé votre adresse email. Vous pouvez maintenant
+                    <a href="/login" class="font-semibold text-emerald-600 hover:text-emerald-500 transition-colors">
+                        vous connecter
+                    </a>.
+                </p>
+            </div>
+        }
+        else
+        {
+            <div>
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900">Confirmation d'email</h1>
+                <p class="mt-4 rounded-lg bg-red-50 p-4 text-sm text-red-700">
+                    @_error
+                </p>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromQuery(Name = "userId")]
+    public string? UserId { get; set; }
+
+    [SupplyParameterFromQuery(Name = "code")]
+    public string? Code { get; set; }
+
+    private bool _loading = true;
+    private bool _confirmed;
+    private string? _error;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (string.IsNullOrEmpty(UserId) || string.IsNullOrEmpty(Code))
+        {
+            _error = "Lien de confirmation invalide ou incomplet.";
+            _loading = false;
+            return;
+        }
+
+        try
+        {
+            var response = await Http.GetAsync(
+                $"account/confirm-email?userId={Uri.EscapeDataString(UserId)}&code={Uri.EscapeDataString(Code)}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                _confirmed = true;
+            }
+            else
+            {
+                _error = "Impossible de confirmer votre adresse email. Le lien est peut-être invalide ou expiré.";
+            }
+        }
+        catch
+        {
+            _error = "Une erreur est survenue lors de la confirmation de votre adresse email.";
+        }
+        finally
+        {
+            _loading = false;
+        }
+    }
+}
