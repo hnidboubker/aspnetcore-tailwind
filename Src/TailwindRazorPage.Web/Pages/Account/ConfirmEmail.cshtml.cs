@@ -4,14 +4,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using TailwindIdentity.Core.Models;
 
 namespace TailwindRazorPage.Web.Pages.Account;
 
 public class ConfirmEmailModel : PageModel
 {
-    private readonly UserManager<AppUser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public ConfirmEmailModel(UserManager<AppUser> userManager)
+    public ConfirmEmailModel(UserManager<ApplicationUser> userManager)
     {
         _userManager = userManager;
     }

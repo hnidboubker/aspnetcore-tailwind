@@ -1,21 +1,21 @@
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
-using Hasim.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using TailwindRazorPage.Web.Services;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
+using TailwindIdentity.Core.Models;
+using TailwindIdentity.EntityFrameworkCore.Services;
 
 namespace TailwindRazorPage.Web.Pages.Account;
 
 public class SendConfirmationModel : PageModel
 {
-    private readonly UserManager<AppUser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly IEmailService _emailService;
 
-    public SendConfirmationModel(UserManager<AppUser> userManager, IEmailService emailService)
+    public SendConfirmationModel(UserManager<ApplicationUser> userManager, IEmailService emailService)
     {
         _userManager = userManager;
         _emailService = emailService;

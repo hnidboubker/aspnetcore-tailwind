@@ -1,25 +1,26 @@
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
 using Hasim.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using TailwindRazorPage.Web.Services;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
+using TailwindIdentity.Core.Models;
+using TailwindIdentity.EntityFrameworkCore.Services;
 
 namespace TailwindRazorPage.Web.Pages.Account;
 
 public class SignUpPageModel : PageModel
 {
-    private readonly UserManager<AppUser> _userManager;
-    private readonly SignInManager<AppUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IEmailService _emailService;
     private readonly IConfiguration _configuration;
 
     public SignUpPageModel(
-        UserManager<AppUser> userManager,
-        SignInManager<AppUser> signInManager,
+        UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> signInManager,
         IEmailService emailService,
         IConfiguration configuration)
     {
@@ -78,7 +79,7 @@ public class SignUpPageModel : PageModel
             return Page();
         }
 
-        var user = new AppUser
+        var user = new ApplicationUser
         {
             UserName = Input.Email,
             Email = Input.Email,

@@ -1,18 +1,18 @@
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Hasim.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using TailwindIdentity.Core.Models;
 
 namespace TailwindRazorPage.Web.Pages.Account;
 
 public class ResetPasswordModel : PageModel
 {
-    private readonly UserManager<AppUser> _userManager;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public ResetPasswordModel(UserManager<AppUser> userManager)
+    public ResetPasswordModel(UserManager<ApplicationUser> userManager)
     {
         _userManager = userManager;
     }

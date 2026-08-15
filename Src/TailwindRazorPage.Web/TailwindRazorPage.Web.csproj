@@ -29,6 +29,10 @@
 	  </PackageReference>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\TailwindIdentity.EntityFrameworkCore\TailwindIdentity.EntityFrameworkCore.csproj" />
+	</ItemGroup>
+
 	<Target Name="Tailwind" BeforeTargets="Build">
 		<Exec Command="npm run css:build" />
 	</Target>

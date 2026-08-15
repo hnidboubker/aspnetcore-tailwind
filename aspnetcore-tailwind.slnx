@@ -15,4 +15,5 @@
   <Folder Name="/RazorPage/">
     <Project Path="Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj" />
   </Folder>
+  <Project Path="Src/TailwindIdentity.EntityFrameworkCore/TailwindIdentity.EntityFrameworkCore.csproj" Id="02b57b04-3278-4a3b-9f91-aed27a1cdabc" />
 </Solution>

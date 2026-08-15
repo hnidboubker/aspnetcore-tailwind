@@ -404,3 +404,7 @@ build/**
 *.swo
 .DS_Store
 Thumbs.db
+
+
+.claude/**
+!.claude/.gitkeep

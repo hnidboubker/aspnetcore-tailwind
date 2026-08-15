@@ -1,17 +1,17 @@
-using System.ComponentModel.DataAnnotations;
-using Hasim.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
+using TailwindIdentity.Core.Models;
 
 namespace TailwindRazorPage.Web.Pages.Account;
 
 public class LoginWith2faModel : PageModel
 {
-    private readonly SignInManager<AppUser> _signInManager;
-    private readonly UserManager<AppUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public LoginWith2faModel(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+    public LoginWith2faModel(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
     {
         _signInManager = signInManager;
         _userManager = userManager;
