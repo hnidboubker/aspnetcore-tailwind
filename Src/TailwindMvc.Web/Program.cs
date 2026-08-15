@@ -1,5 +1,5 @@
 using TailwindIdentity.Core;
-
+using TailwindIdentity.EntityFrameworkCore.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();

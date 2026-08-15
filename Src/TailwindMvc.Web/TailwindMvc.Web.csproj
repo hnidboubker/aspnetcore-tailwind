@@ -21,14 +21,14 @@
 	</Target>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TailwindIdentity.Core\TailwindIdentity.Core.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	    <PrivateAssets>all</PrivateAssets>
 	  </PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\TailwindIdentity.EntityFrameworkCore\TailwindIdentity.EntityFrameworkCore.csproj" />
 	</ItemGroup>
 
 </Project>

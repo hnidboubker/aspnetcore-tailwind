@@ -1,6 +1,7 @@
 using TailwindBlazor.Web.Components;
 using TailwindIdentity.Core;
 using TailwindBlazor.Web.Components.Account;
+using TailwindIdentity.EntityFrameworkCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

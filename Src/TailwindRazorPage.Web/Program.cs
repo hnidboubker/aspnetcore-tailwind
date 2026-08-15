@@ -1,12 +1,6 @@
-using Hasim.Core.Entities;
 using Injectify.Extensions;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.EntityFrameworkCore;
 using TailwindIdentity.EntityFrameworkCore.Extensions;
 using TailwindIdentity.EntityFrameworkCore.Seeds;
-using TailwindRazorPage.Web.Persistence;
-using TailwindRazorPage.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

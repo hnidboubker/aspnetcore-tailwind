@@ -14,8 +14,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <ProjectReference Include="..\..\TailwindIdentity.EntityFrameworkCore\TailwindIdentity.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\TailwindBlazor.Web.Client\TailwindBlazor.Web.Client.csproj" />
-    <ProjectReference Include="..\..\TailwindIdentity.Core\TailwindIdentity.Core.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.29" />
   </ItemGroup>
 
