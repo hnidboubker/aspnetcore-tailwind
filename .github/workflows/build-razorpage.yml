@@ -1,8 +1,12 @@
+
 name: Build Razor Pages
 
 on:
   push:
   pull_request:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -11,6 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -32,34 +38,47 @@ jobs:
         run: dotnet restore Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj
 
       - name: Build
-        run: dotnet build Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj --configuration Release --no-restore
+        run: >
+          dotnet build
+          Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj
+          --configuration Release
+          --no-restore
 
       - name: Copy artifacts
         run: |
+          rm -rf .artifacts
           mkdir -p .artifacts
+
           cp -r Src/TailwindRazorPage.Web/bin .artifacts/
           cp -r Src/TailwindRazorPage.Web/obj .artifacts/
 
       - name: Publish
-        run: dotnet publish Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj \
-          --configuration Release \
-          --framework net8.0 \
-          --no-build \
+        run: >
+          dotnet publish
+          Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj
+          --configuration Release
+          --framework net8.0
+          --no-build
           --output ./publish/razorpage
 
       - name: Copy publish
         run: |
+          rm -rf .publish
           mkdir -p .publish
+
           cp -r publish/. .publish/
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifacts
-          path: .artifacts/
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Upload publish
-        uses: actions/upload-artifact@v4
-        with:
-          name: publish
-          path: .publish/
+          git add -f .artifacts .publish
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update build artifacts and publish"
+            git push
+          fi
+
