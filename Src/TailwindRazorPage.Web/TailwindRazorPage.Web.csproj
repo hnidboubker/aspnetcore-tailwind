@@ -8,11 +8,11 @@
 		<UseAppHost>false</UseAppHost>
 
 
-		<UseAppHost>false</UseAppHost>
+	
 
     <IsPackable>true</IsPackable>
     
-    <PackageId>TailwinRazorPage</PackageId>
+    <PackageId>TailwindRazorPage</PackageId>
     <Version>0.1.0</Version>
     <PackageIcon>Logo.png</PackageIcon>
 
