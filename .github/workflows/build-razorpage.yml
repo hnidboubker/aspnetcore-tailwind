@@ -32,7 +32,18 @@ jobs:
         run: dotnet restore Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj
 
       - name: Build
-        run: dotnet build Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj --configuration Release --framework net8.0 --no-restore
+        run: dotnet build Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj --configuration Release --no-restore
+
+      - name: Copy artifacts
+        run: |
+          mkdir -p .artifacts
+          cp -r Src/TailwindRazorPage.Web/bin .artifacts/
+          cp -r Src/TailwindRazorPage.Web/obj .artifacts/
 
       - name: Publish
         run: dotnet publish Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj --configuration Release --framework net8.0 --no-build --output ./publish/razorpage
+
+      - name: Copy publish
+        run: |
+          mkdir -p .publish
+          cp -r publish/. .publish/
