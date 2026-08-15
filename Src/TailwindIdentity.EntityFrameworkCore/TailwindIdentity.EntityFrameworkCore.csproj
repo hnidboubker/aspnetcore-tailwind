@@ -8,14 +8,14 @@
 	
 
  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.29" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.29">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
-    <PackageReference Include="MailKit" Version="4.8.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.29" />
+    <PackageReference Include="MailKit" Version="4.17.0" />
   </ItemGroup>
 
   <ItemGroup>

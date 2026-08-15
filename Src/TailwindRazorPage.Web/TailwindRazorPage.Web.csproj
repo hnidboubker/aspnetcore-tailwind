@@ -14,18 +14,27 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Hasim" Version="0.1.1" />
+		<PackageReference Include="Hasim" Version="0.1.3" />
 		<PackageReference Include="Hasim.Core" Version="0.1.0" />
 		<PackageReference Include="Hasim.EntityFrameworkCore" Version="0.1.1" />
 		<PackageReference Include="Hasim.Injectify" Version="0.1.2" />
 		<PackageReference Include="Hasim.Auditify" Version="0.1.5" />
 		<PackageReference Include="MailKit" Version="4.17.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.29" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="8.0.29" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.29" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.29" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.11">
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.29">
 	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	    <PrivateAssets>all</PrivateAssets>
+	  </PackageReference>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.29" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.29">
+	    <PrivateAssets>all</PrivateAssets>
+	    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	</ItemGroup>
 
