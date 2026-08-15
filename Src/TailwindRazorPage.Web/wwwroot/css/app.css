@@ -1,1 +1,15 @@
 ﻿@import "tailwindcss";
+
+
+@theme {
+    /* Déclaration des variables de thème directement en CSS (v4) */
+    --color-brand: #212529;
+    --color-brand-muted: #6c757d;
+    /* Exemple d'utilisation des nouvelles couleurs natives 4.3 */
+    --color-legal-bg: var(--color-mist-50);
+
+  
+}  .legal-footer-links {
+        @apply font-sans text-sm;
+    }
+

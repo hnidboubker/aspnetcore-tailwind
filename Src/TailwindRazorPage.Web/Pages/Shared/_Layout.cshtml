@@ -49,7 +49,33 @@
             <main class="flex-1">
                 @RenderBody()
             </main>
+              <div class="text-center my-8 font-sans text-xs sm:text-sm bg-legal-bg p-4 rounded-lg">
+            <hr class="border-t border-mist-200 w-4/5 mx-auto mb-6" />
+            <nav aria-label="Liens légaux">
+                <!-- Utilisation de gap-3 et flex-wrap pour un rendu fluide -->
+                <ul class="flex flex-wrap justify-center items-center gap-3 p-0 m-0 list-none">
+                    <li>
+                        <a asp-page="/Legal/CGU" class="text-brand-muted hover:text-brand hover:underline transition-colors duration-200" title="Conditions Générales d'Utilisation">CGU</a>
+                    </li>
+                    <li class="text-mist-400" aria-hidden="true">|</li>
+                    <li>
+                        <a asp-page="/Legal/CGV" class="text-brand-muted hover:text-brand hover:underline transition-colors duration-200" title="Conditions Générales de Vente">CGV</a>
+                    </li>
+                    <li class="text-mist-400" aria-hidden="true">|</li>
+                    <li>
+                        <a asp-page="/Legal/Confidentialite" class="text-brand-muted hover:text-brand hover:underline transition-colors duration-200" title="Politique de Confidentialité">Confidentialité</a>
+                    </li>
+                    <li class="text-mist-400" aria-hidden="true">|</li>
+                    <li>
+                        <a asp-page="/Legal/RGPD" class="text-brand-muted hover:text-brand hover:underline transition-colors duration-200" title="Conformité RGPD & Données personnelles">RGPD</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
+
+        </div>
+
+      
     </div>
 
     <script src="https://unpkg.com/lucide@latest"></script>
