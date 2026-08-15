@@ -6,6 +6,9 @@
   <Folder Name="/Core/">
     <Project Path="Src/TailwindIdentity.Core/TailwindIdentity.Core.csproj" />
   </Folder>
+  <Folder Name="/EntityFrameworkCore/">
+    <Project Path="Src/TailwindIdentity.EntityFrameworkCore/TailwindIdentity.EntityFrameworkCore.csproj" Id="02b57b04-3278-4a3b-9f91-aed27a1cdabc" />
+  </Folder>
   <Folder Name="/Maui/">
     <Project Path="Src/TailwindMaui.Web/TailwindMaui.Web.csproj" />
   </Folder>
@@ -15,5 +18,4 @@
   <Folder Name="/RazorPage/">
     <Project Path="Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj" />
   </Folder>
-  <Project Path="Src/TailwindIdentity.EntityFrameworkCore/TailwindIdentity.EntityFrameworkCore.csproj" Id="02b57b04-3278-4a3b-9f91-aed27a1cdabc" />
 </Solution>
