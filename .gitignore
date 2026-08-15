@@ -406,5 +406,5 @@ build/**
 Thumbs.db
 
 
-.claude/**
+.claude/*
 !.claude/.gitkeep
