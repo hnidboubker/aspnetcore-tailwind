@@ -411,4 +411,4 @@ Thumbs.db
 
 graphify-out/
 
-!.artifacts/ !.artifacts/** !.publish/ !.publish/**
+
