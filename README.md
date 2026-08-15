@@ -1,9 +1,7 @@
 # ASP.NET Core Starter Templates with Tailwind CSS 4.3
 
 [![Build](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-mvc.yml/badge.svg)](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-mvc.yml)
-
 [![Build](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-razorpage.yml/badge.svg)](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-razorpage.yml)
-
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 
