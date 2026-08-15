@@ -40,7 +40,7 @@ public static class IdentityServiceExtensions
             options.AccessDeniedPath = "/Account/SignIn";
         });
 
-        services.AddSingleton<IEmailSender, MailKitEmailSender>();
+        //services.AddSingleton<IEmailSender, MailKitEmailSender>();
 
        services.Configure<EmailOptions>(configuration.GetSection(EmailOptions.SectionName));
         services.AddScoped<IEmailService, MailKitEmailSender>();
