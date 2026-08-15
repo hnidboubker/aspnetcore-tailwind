@@ -20,10 +20,18 @@
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Injectify.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Humanizer.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/MailKit.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Authorization.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Components.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Components.Authorization.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Components.Forms.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Components.Web.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Components.WebAssembly.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Cryptography.Internal.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Identity.UI.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.AspNetCore.Metadata.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Bcl.AsyncInterfaces.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.CodeAnalysis.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.CodeAnalysis.CSharp.dll
@@ -36,6 +44,9 @@
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Extensions.Caching.Memory.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Extensions.Configuration.Binder.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Extensions.Configuration.FileExtensions.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Extensions.Configuration.Json.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Extensions.DependencyInjection.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Extensions.DependencyModel.dll
@@ -55,6 +66,8 @@
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.IdentityModel.Protocols.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.JSInterop.dll
+/home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.JSInterop.WebAssembly.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.SqlServer.Server.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/Microsoft.Win32.SystemEvents.dll
 /home/runner/work/aspnetcore-tailwind/aspnetcore-tailwind/Src/TailwindRazorPage.Web/bin/Release/net8.0/MimeKit.dll
