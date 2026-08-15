@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TailwindMvc.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56324a8282d4cc1d88605c08c9232a0c487bd6f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27729c84195b9ce548de6c3be748ea99e87131d6")]
 [assembly: System.Reflection.AssemblyProductAttribute("TailwindMvc.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TailwindMvc.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
