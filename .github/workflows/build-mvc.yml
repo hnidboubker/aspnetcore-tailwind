@@ -54,7 +54,7 @@ jobs:
       - name: Publish
         run: >
           dotnet publish
-          Src/TailwindMvc.Web/TailwindRazorPage.Web.csproj
+          Src/TailwindMvc.Web/TailwindMvc.Web.csproj
           --configuration Release
           --framework net8.0
           --no-build
