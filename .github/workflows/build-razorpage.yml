@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - 'src/MyApp.RazorPage/**'
+      - 'src/TailwindRazorPage.Web/**'
       - '.github/workflows/build-razorpage.yml'
 
   pull_request:
     paths:
-      - 'src/MyApp.RazorPage/**'
+      - 'src/TaiwindRazorPage.Web/**'
       - '.github/workflows/build-razorpage.yml'
 
 jobs:
