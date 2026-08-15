@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TailwindRazorPage.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4763b4ba7172637cb56eac347887e66224e8d684")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+19aaf550dd19e35efdb54f2aed13867ea4abdd8c")]
 [assembly: System.Reflection.AssemblyProductAttribute("TailwindRazorPage.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TailwindRazorPage.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
