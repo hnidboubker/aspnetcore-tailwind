@@ -6,6 +6,27 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!-- Optional: disable native app host generation. The application will run using "dotnet MyApp.dll". -->
 		<UseAppHost>false</UseAppHost>
+
+
+		<UseAppHost>false</UseAppHost>
+
+    <IsPackable>true</IsPackable>
+    
+    <PackageId>TailwinRazorPage</PackageId>
+    <Version>0.1.0</Version>
+    <PackageIcon>Logo.png</PackageIcon>
+
+	<Authors>NID BOUBKER Houssine</Authors>
+    <Description>Modern ASP.NET Core starter templates with Tailwind CSS 4.3, PostCSS, and esbuild for Razor Pages, MVC, Blazor, and .NET MAUI..</Description>
+   <PackageTags>asp-net-core;asp-net-core-mvc;asp-net-mvc; aspnetcore;blazor;template;css;dotnet;esbuild;front-end;maui;mvc;postcss;razor-pages;starter-template;tailwindcss;web-development</PackageTags>
+    <RepositoryUrl>https://github.com/hnidboubker/aspnetcore-tailwind</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <!-- XML documentation -->
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);CS1591</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -45,5 +66,9 @@
 	<Target Name="Tailwind" BeforeTargets="Build">
 		<Exec Command="npm run css:build" />
 	</Target>
+
+	   <ItemGroup>
+      <None Include="../../assets/images/Logo.png" Pack="true" PackagePath="\" />
+  	</ItemGroup>
 
 </Project>
