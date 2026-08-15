@@ -65,11 +65,11 @@ Included pages:
 
 | Page            | Route                                     |
 | --------------- | ----------------------------------------- |
-| Login           | `/Identity/Account/Login`                 |
-| Register        | `/Identity/Account/Register`              |
-| Forgot Password | `/Identity/Account/ForgotPassword`        |
-| Profile         | `/Identity/Account/Manage`                |
-| Change Password | `/Identity/Account/Manage/ChangePassword` |
+| Login           | `/Account/Login`                 |
+| Register        | `/Account/Register`              |
+| Forgot Password | `/Account/ForgotPassword`        |
+| Profile         | `/Account/Manage`                |
+| Change Password | `/Account/Manage/ChangePassword` |
 
 ---
 
