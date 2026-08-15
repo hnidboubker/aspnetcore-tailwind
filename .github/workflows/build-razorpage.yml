@@ -2,16 +2,7 @@ name: Build Razor Pages
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'src/TailwindRazorPage.Web/**'
-      - '.github/workflows/build-razorpage.yml'
-
-  pull_request:
-    paths:
-      - 'src/TaiwindRazorPage.Web/**'
-      - '.github/workflows/build-razorpage.yml'
+  pull_request:  
 
 jobs:
   build:
