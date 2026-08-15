@@ -406,5 +406,7 @@ build/**
 Thumbs.db
 
 
-.claude/*
-!.claude/.gitkeep
+.claude/
+
+
+graphify-out/
