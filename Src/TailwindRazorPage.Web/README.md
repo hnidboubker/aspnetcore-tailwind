@@ -1,23 +1,23 @@
-# TailwindIdentity.Razor
+# TailwindRazorPage.Web
 
-![.NET](https://img.shields.io/badge/.NET-8%20%7C%209%20%7C%2010-512BD4)
+![.NET](https://img.shields.io/badge/.NET-8-512BD4)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-Razor%20Pages-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.3-06B6D4)
-![Identity](https://img.shields.io/badge/ASP.NET%20Core%20Identity-Enabled-green)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 # Overview
 
-`TailwindIdentity.Razor` is an ASP.NET Core Razor Pages starter template built with:
+`TailwindRazorPage.Web` is a modern ASP.NET Core Razor Pages application built with:
 
-* ASP.NET Core 8 / 9 / 10
+* ASP.NET Core 8
 * Razor Pages
-* Tailwind CSS 4.3
+* Tailwind CSS 4.3 (with PostCSS)
+* Entity Framework Core 8 (via `TailwindIdentity.EntityFrameworkCore`)
 * ASP.NET Core Identity
-* Entity Framework Core
-* Shared authentication infrastructure from `TailwindIdentity.Core`
+* Hasim libraries for audit, dependency injection, and core functionality
+* MailKit for email services
 
-This project provides a modern Razor Pages foundation with a fully customized Identity UI replacing the default Bootstrap-based templates.
+This project provides a complete starter template with custom Identity UI, legal pages, and a Tailwind CSS 4.3 pipeline.
 
 ---
 
@@ -26,17 +26,20 @@ This project provides a modern Razor Pages foundation with a fully customized Id
 ```mermaid
 graph TD
 
-Razor[TailwindIdentity.Razor]
+Web[TailwindRazorPage.Web]
 
-Razor --> Core[TailwindIdentity.Core]
+Web --> EFCore[TailwindIdentity.EntityFrameworkCore]
+Web --> Core[TailwindIdentity.Core]
 
-Core --> Identity[ASP.NET Core Identity]
-Core --> Entities[ApplicationUser / ApplicationRole]
-Core --> Context[DefaultContext]
-Core --> MailKit[MailKit Email Service]
+EFCore --> Identity[ASP.NET Core Identity]
+EFCore --> EF[Entity Framework Core]
+EFCore --> MailKit[MailKit Email Service]
 
-Razor --> Tailwind[Tailwind CSS 4.3]
-Razor --> EF[Entity Framework Core]
+Core --> Entities[Identity Entities]
+Core --> Services[Shared Services]
+
+Web --> Tailwind[Tailwind CSS 4.3]
+Web --> Hasim[Hasim Libraries]
 ```
 
 ---
@@ -45,105 +48,116 @@ Razor --> EF[Entity Framework Core]
 
 ## Authentication
 
-Includes a complete custom Identity experience:
+Complete custom Identity experience with Razor Pages:
 
-* Login
-* Register
-* Forgot password
-* Reset password
-* Profile management
-* Change password
-* Logout
+* Sign In (`/Account/SignInPage`)
+* Sign Up (`/Account/SignUpPage`)
+* Forgot Password (`/Account/PasswordForgot`)
+* Reset Password (`/Account/ResetPassword`)
+* Email Confirmation (`/Account/ConfirmEmail`, `/Account/SendConfirmation`)
+* Two-Factor Authentication (`/Account/LoginWith2fa`)
+* Lockout page (`/Account/Lockout`)
 
----
+## Legal Pages
 
-## Custom Identity UI
+Static legal content pages:
 
-All Identity pages are redesigned with Tailwind CSS.
+* Conditions Générales d'Utilisation (`/Legal/CGU`)
+* Conditions Générales de Vente (`/Legal/CGV`)
+* Politique de Confidentialité (`/Legal/Confidentialite`)
+* RGPD (`/Legal/RGPD`)
 
-Included pages:
+## UI & Styling
 
-| Page            | Route                                     |
-| --------------- | ----------------------------------------- |
-| Login           | `/Account/Login`                 |
-| Register        | `/Account/Register`              |
-| Forgot Password | `/Account/ForgotPassword`        |
-| Profile         | `/Account/Manage`                |
-| Change Password | `/Account/Manage/ChangePassword` |
-
----
-
-# User Interface
-
-Design principles:
-
-* Responsive layout
+* Responsive layout with Tailwind CSS 4.3
 * Clean authentication cards
-* Emerald color theme
-* Modern form components
-* Validation messages
-* Mobile friendly interface
-
-Example structure:
-
-```text
-Areas/
-└── Identity/
-    └── Pages/
-        └── Account/
-            ├── Login.cshtml
-            ├── Register.cshtml
-            ├── ForgotPassword.cshtml
-            └── Manage/
-```
+* Modern form components with validation
+* Mobile-friendly interface
+* Legal footer links
 
 ---
 
 # Project Structure
 
-```text
-TailwindIdentity.Razor/
+```
+TailwindRazorPage.Web/
 
-├── Areas/
-│   └── Identity/
-│       └── Pages/
-│
+├── Areas/                       # Migrations EF Core
 ├── Pages/
-│   ├── Index.cshtml
-│   └── Shared/
-│
+│   ├── Account/                # Identity pages
+│   ├── Legal/                  # Legal pages
+│   ├── Shared/                 # Layouts & partials
+│   ├── Index.cshtml            # Home page
+│   ├── Error.cshtml            # Error page
+│   ├── Privacy.cshtml          # Privacy page
+│   ├── _ViewImports.cshtml
+│   └── _ViewStart.cshtml
+├── Persistence/
+│   ├── DefaultContext.cs       # EF Core context (commented)
+│   └── Models/                 # Entity models
+├── Services/
+│   ├── EmailOptions.cs
+│   ├── IEmailService.cs
+│   └── MailKitEmailSender.cs
+├── Data/
+│   └── DatabaseSeeder.cs       # DB seeding (commented)
 ├── wwwroot/
 │   ├── css/
-│   └── js/
-│
-├── Program.cs
+│   │   ├── app.css             # Tailwind source
+│   │   └── style.css           # Compiled output
+│   └── favicon.ico
+├── Program.cs                  # App entry point
 ├── appsettings.json
-└── TailwindIdentity.Razor.csproj
+├── appsettings.Development.json
+├── package.json                # npm scripts & deps
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.extension.json
+├── TailwindRazorPage.Web.csproj
+└── PROSS.md
 ```
 
 ---
 
-# Shared Core Reference
+# Dependencies
 
-This project uses:
+## NuGet Packages
 
-```
-TailwindIdentity.Core
-```
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `Hasim` | 0.1.3 | Core Hasim library |
+| `Hasim.Core` | 0.1.0 | Hasim core functionality |
+| `Hasim.EntityFrameworkCore` | 0.1.1 | EF Core integration |
+| `Hasim.Injectify` | 0.1.2 | Dependency injection modules |
+| `Hasim.Auditify` | 0.1.5 | Audit logging |
+| `MailKit` | 4.17.0 | Email services |
+| `Microsoft.AspNetCore.Components.WebAssembly` | 8.0.29 | WASM support |
+| `Microsoft.AspNetCore.Components.WebAssembly.Authentication` | 8.0.29 | WASM auth |
+| `Microsoft.AspNetCore.Identity.EntityFrameworkCore` | 8.0.29 | Identity with EF Core |
+| `Microsoft.AspNetCore.Identity.UI` | 8.0.29 | Identity UI |
+| `Microsoft.EntityFrameworkCore.SqlServer` | 8.0.29 | SQL Server provider |
+| `Microsoft.EntityFrameworkCore.Tools` | 8.0.29 | EF Core tooling |
+| `Microsoft.EntityFrameworkCore.Design` | 8.0.29 | EF Core design-time |
 
-Provided services:
-
-* Identity entities
-* Database context
-* Persistence configuration
-* Email sender
-* Shared services
-
-Reference:
+## Project References
 
 ```xml
-<ProjectReference Include="..\TailwindIdentity.Core\TailwindIdentity.Core.csproj" />
+<ProjectReference Include="..\TailwindIdentity.EntityFrameworkCore\TailwindIdentity.EntityFrameworkCore.csproj" />
 ```
+
+The `TailwindIdentity.EntityFrameworkCore` project references `TailwindIdentity.Core` for shared Identity infrastructure.
+
+## npm Dev Dependencies
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `@tailwindcss/cli` | ^4.3.3 | Tailwind CLI |
+| `@tailwindcss/postcss` | ^4.3.3 | PostCSS plugin |
+| `postcss` | ^8.5.23 | PostCSS |
+| `postcss-cli` | ^11.0.1 | PostCSS CLI |
+| `autoprefixer` | ^10.5.4 | CSS vendor prefixes |
+| `esbuild` | ^0.28.1 | JS bundler |
+| `lucide` | ^1.25.0 | Icon library |
 
 ---
 
@@ -151,123 +165,234 @@ Reference:
 
 The frontend uses:
 
-* Tailwind CSS 4.3
-* PostCSS
-* esbuild
+* Tailwind CSS 4.3 (native CSS variables, no config file needed)
+* PostCSS for processing
+* esbuild for JavaScript bundling
 
-Install dependencies:
+## Install Dependencies
 
 ```bash
 npm install
 ```
 
-Development mode:
+## Development Mode (Watch)
 
 ```bash
 npm run dev
 ```
 
-Production build:
+Runs `postcss` in watch mode:
+```
+postcss wwwroot/css/app.css -o wwwroot/css/style.css --watch
+```
+
+## Production Build
 
 ```bash
 npm run build
 ```
 
-Generated files:
+Compiles and minifies:
+```
+npx @tailwindcss/cli -i ./wwwroot/css/app.css -o ./wwwroot/css/style.css --minify
+```
+
+## JavaScript Bundling
+
+```bash
+npm run build:js
+```
+
+Bundles icons:
+```
+esbuild wwwroot/js/icons.js --bundle --outfile=wwwroot/js/icons.bundle.js
+```
+
+## Generated Files
 
 ```
 wwwroot/
 └── css/
-    └── app.css
+    ├── app.css      # Source (Tailwind directives + custom CSS)
+    └── style.css    # Compiled output (referenced in _Layout.cshtml)
 ```
+
+The `Tailwind` MSBuild target in the `.csproj` runs `npm run css:build` before each .NET build.
 
 ---
 
 # Database Setup
 
-Apply migrations:
+## Connection String
 
-```bash
-dotnet ef database update \
--p ../TailwindIdentity.Core \
--s .
-```
-
-The application uses SQL Server LocalDB by default.
-
-Example:
+Default in `appsettings.json`:
 
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection":
-    "Server=localhost;Database=TailwindIdentity;Trusted_Connection=True;TrustServerCertificate=True"
+    "DefaultConnection": "Server=localhost;Database=TailwindIdentity;Trusted_Connection=True;Encrypt=true;MultipleActiveResultSets=true;TrustServerCertificate=true"
   }
 }
 ```
+
+## Email Configuration
+
+```json
+{
+  "Email": {
+    "From": "noreply@tailwind.local",
+    "SmtpHost": "localhost",
+    "SmtpPort": 587,
+    "SmtpUser": "",
+    "SmtpPassword": ""
+  }
+}
+```
+
+## Identity Settings
+
+```json
+{
+  "Identity": {
+    "RequireConfirmedEmail": false
+  }
+}
+```
+
+## Apply Migrations
+
+```bash
+dotnet ef database update \
+  -p ../TailwindIdentity.EntityFrameworkCore \
+  -s .
+```
+
+## Create a Migration
+
+```bash
+dotnet ef migrations add MigrationName \
+  -p ../TailwindIdentity.EntityFrameworkCore \
+  -s .
+```
+
+The migrations are stored in `TailwindIdentity.EntityFrameworkCore/Migrations/`.
 
 ---
 
 # Run Application
 
-Restore packages:
+## Prerequisites
+
+* .NET 8 SDK
+* Node.js 18+ (for Tailwind CSS)
+* SQL Server LocalDB or SQL Server instance
+
+## Steps
+
+1. **Restore .NET packages:**
 
 ```bash
 dotnet restore
 ```
 
-Start Tailwind:
+2. **Install npm dependencies:**
 
 ```bash
-npm run dev
+npm install
 ```
 
-Run application:
+3. **Build CSS (one-time):**
 
 ```bash
+npm run build
+```
+
+4. **Run database migrations:**
+
+```bash
+dotnet ef database update -p ../TailwindIdentity.EntityFrameworkCore -s .
+```
+
+5. **Start development:**
+
+```bash
+# Terminal 1 - CSS watch mode
+npm run dev
+
+# Terminal 2 - Run application
 dotnet run
 ```
+
+The application will be available at `https://localhost:5001` (or the configured port).
+
+---
+
+# Configuration
+
+## appsettings.json
+
+| Section | Description |
+|---------|-------------|
+| `ConnectionStrings.DefaultConnection` | SQL Server connection |
+| `Email` | SMTP settings for MailKit |
+| `Identity.RequireConfirmedEmail` | Require email confirmation for sign-in |
+| `Logging` | Log levels |
+
+## Program.cs Highlights
+
+* Uses `AddTailwindIdentity()` extension from `TailwindIdentity.EntityFrameworkCore`
+* Registers Injectify modules via `builder.InjectifyApplication()`
+* Seeds database on startup via `DatabaseSeeder.SeedAsync()`
+* Configures authentication/authorization middleware
+* Maps Razor Pages
 
 ---
 
 # Screenshots
 
-Add screenshots here:
+Add screenshots to `docs/images/`:
 
 ```
 docs/images/
 ├── razor-login.png
 ├── razor-register.png
-└── razor-profile.png
+├── razor-profile.png
+└── legal-pages.png
 ```
 
-Example:
+Example usage:
 
+```markdown
 ![Login](../../docs/images/razor-login.png)
+```
 
 ---
 
 # Technology Stack
 
-| Technology            | Usage           |
-| --------------------- | --------------- |
-| ASP.NET Core          | Web framework   |
-| Razor Pages           | UI architecture |
-| Tailwind CSS          | Styling         |
-| Entity Framework Core | Database access |
-| Identity              | Authentication  |
-| MailKit               | Email services  |
+| Technology | Usage |
+|------------|-------|
+| ASP.NET Core 8 | Web framework |
+| Razor Pages | UI architecture |
+| Tailwind CSS 4.3 | Styling (native CSS variables) |
+| PostCSS | CSS processing |
+| esbuild | JavaScript bundling |
+| Entity Framework Core 8 | Database access |
+| ASP.NET Core Identity | Authentication |
+| MailKit | Email services |
+| Hasim | Core, Audit, Injectify libraries |
 
 ---
 
 # Related Projects
 
-| Project                 | Description                    |
-| ----------------------- | ------------------------------ |
-| TailwindIdentity.Core   | Shared Identity infrastructure |
-| TailwindIdentity.Mvc    | MVC template                   |
-| TailwindIdentity.Blazor | Blazor template                |
-| TailwindIdentity.Maui   | MAUI Hybrid template           |
+| Project | Description |
+|---------|-------------|
+| `TailwindIdentity.Core` | Shared Identity entities & services |
+| `TailwindIdentity.EntityFrameworkCore` | EF Core Identity implementation |
+| `TailwindMvc.Web` | MVC template |
+| `TailwindBlazor.Web` | Blazor template |
+| `TailwindMaui.Web` | MAUI Hybrid template |
 
 ---
 
