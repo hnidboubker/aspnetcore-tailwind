@@ -41,9 +41,25 @@ jobs:
           cp -r Src/TailwindRazorPage.Web/obj .artifacts/
 
       - name: Publish
-        run: dotnet publish Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj --configuration Release --framework net8.0 --no-build --output ./publish/razorpage
+        run: dotnet publish Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj \
+          --configuration Release \
+          --framework net8.0 \
+          --no-build \
+          --output ./publish/razorpage
 
       - name: Copy publish
         run: |
           mkdir -p .publish
           cp -r publish/. .publish/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts
+          path: .artifacts/
+
+      - name: Upload publish
+        uses: actions/upload-artifact@v4
+        with:
+          name: publish
+          path: .publish/
