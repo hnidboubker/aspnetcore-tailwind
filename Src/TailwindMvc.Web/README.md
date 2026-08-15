@@ -1,38 +1,40 @@
-# TailwindIdentity.Mvc
+# TailwindMvc.Web
 
-![.NET](https://img.shields.io/badge/.NET-8%20%7C%209%20%7C%2010-512BD4)
+![.NET](https://img.shields.io/badge/.NET-8-512BD4)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-MVC-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.3-06B6D4)
-![Identity](https://img.shields.io/badge/ASP.NET%20Core%20Identity-Enabled-green)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 # Overview
 
-`TailwindIdentity.Mvc` is an ASP.NET Core MVC starter template built with:
+`TailwindMvc.Web` is a modern ASP.NET Core MVC application built with:
 
-* ASP.NET Core 8 / 9 / 10
-* MVC Architecture
-* Tailwind CSS 4.3
+* ASP.NET Core 8
+* MVC Architecture (Controllers + Razor Views)
+* Tailwind CSS 4.3 (with PostCSS)
+* Entity Framework Core 8 (via `TailwindIdentity.EntityFrameworkCore`)
 * ASP.NET Core Identity
-* Entity Framework Core
-* Shared authentication infrastructure from `TailwindIdentity.Core`
+* MailKit for email services (configured, commented in Program.cs)
 
-This project provides a clean MVC foundation with a fully customized Identity interface powered by Tailwind CSS.
+This project provides a complete MVC starter template with custom Identity controllers/views and legal pages.
 
 ---
 
 # Architecture
 
-```mermaid id="mvcarch01"
+```mermaid
 graph TD
 
-MVC[TailwindIdentity.Mvc]
+MVC[TailwindMvc.Web]
 
+MVC --> EFCore[TailwindIdentity.EntityFrameworkCore]
 MVC --> Core[TailwindIdentity.Core]
 
-Core --> Identity[ASP.NET Core Identity]
+EFCore --> Identity[ASP.NET Core Identity]
+EFCore --> EF[Entity Framework Core]
+EFCore --> MailKit[MailKit Email Service]
+
 Core --> Entities[ApplicationUser / ApplicationRole]
-Core --> Context[DefaultContext]
 Core --> Services[Shared Services]
 
 MVC --> Controllers[Controllers]
@@ -44,250 +46,349 @@ MVC --> Tailwind[Tailwind CSS 4.3]
 
 # Features
 
-## Authentication
+## Authentication (AccountController)
 
-The template includes a complete Identity workflow:
+Complete Identity workflow with controllers:
 
-* User registration
-* User login
-* Logout
-* Password recovery
-* Profile management
-* Password change
-* Email confirmation support
+* Login (`GET/POST /Account/Login`)
+* Register (`GET/POST /Account/Register`)
+* Forgot Password (`GET/POST /Account/ForgotPassword`)
+* Forgot Password Confirmation (`/Account/ForgotPasswordConfirmation`)
+* Email Confirmation (`/Account/ConfirmEmail`)
+* Logout (`POST /Account/Logout`)
+* Access Denied (`/Account/AccessDenied`)
+
+## Account Management (ManageController)
+
+* Profile (`GET/POST /Manage/Index`)
+* Change Password (`GET/POST /Manage/ChangePassword`)
+
+## Legal Pages (LegalController)
+
+Static legal content:
+
+* Conditions Générales d'Utilisation (`/Legal/CGU`)
+* Conditions Générales de Vente (`/Legal/CGV`)
+* Politique de Confidentialité (`/Legal/Confidentiality`)
+* RGPD (`/Legal/RGPD`)
+
+## UI & Styling
+
+* Responsive layout with Tailwind CSS 4.3
+* Clean authentication forms
+* Modern form components with validation
+* Mobile-friendly interface
 
 ---
 
-# Custom Identity UI
+# Project Structure
 
-The default Bootstrap Identity pages are replaced with Tailwind CSS views.
-
-Included screens:
-
-| Feature         | Location                              |
-| --------------- | ------------------------------------- |
-| Login           | `Views/Account/Login.cshtml`          |
-| Register        | `Views/Account/Register.cshtml`       |
-| Forgot Password | `Views/Account/ForgotPassword.cshtml` |
-| Profile         | `Views/Manage/Profile.cshtml`         |
-| Change Password | `Views/Manage/ChangePassword.cshtml`  |
-
----
-
-# MVC Architecture
-
-The application follows the standard ASP.NET Core MVC pattern:
-
-```text
-TailwindIdentity.Mvc
+```
+TailwindMvc.Web/
 
 ├── Controllers/
-│   ├── AccountController.cs
-│   └── ManageController.cs
-│
+│   ├── AccountController.cs     # Auth: Login, Register, ForgotPassword, Logout, ConfirmEmail
+│   ├── HomeController.cs        # Home & Privacy
+│   ├── LegalController.cs       # Legal pages (CGU, CGV, Confidentiality, RGPD)
+│   └── ManageController.cs      # Profile & ChangePassword
+├── Models/
+│   └── ErrorViewModel.cs
 ├── Views/
 │   ├── Account/
+│   │   ├── Login.cshtml
+│   │   ├── Register.cshtml
+│   │   ├── ForgotPassword.cshtml
+│   │   ├── ForgotPasswordConfirmation.cshtml
+│   │   ├── ConfirmEmail.cshtml
+│   │   └── AccessDenied.cshtml
+│   ├── Home/
+│   │   ├── Index.cshtml
+│   │   └── Privacy.cshtml
+│   ├── Legal/
+│   │   ├── CGU.cshtml
+│   │   ├── CGV.cshtml
+│   │   ├── Confidentiality.cshtml
+│   │   └── RGPD.cshtml
 │   ├── Manage/
-│   └── Shared/
-│
-├── Models/
-│
+│   │   ├── Index.cshtml
+│   │   └── ChangePassword.cshtml
+│   ├── Shared/
+│   │   ├── _Layout.cshtml
+│   │   ├── _LoginPartial.cshtml
+│   │   └── _ValidationScriptsPartial.cshtml
+│   ├── _ViewImports.cshtml
+│   └── _ViewStart.cshtml
 ├── wwwroot/
-│
+│   ├── css/
+│   │   ├── app.css              # Tailwind source
+│   │   └── style.css            # Compiled output
+│   └── favicon.ico
 ├── Program.cs
-└── appsettings.json
+├── appsettings.json
+├── appsettings.Development.json
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── TailwindMvc.Web.csproj
+└── PROSS.md
 ```
 
 ---
 
-# Shared Core Reference
+# Dependencies
 
-The project depends on:
+## NuGet Packages (from csproj)
 
-```text
-TailwindIdentity.Core
-```
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `Microsoft.EntityFrameworkCore.Design` | 8.0.29 | EF Core design-time tools |
 
-It provides:
-
-* ApplicationUser
-* ApplicationRole
-* DefaultContext
-* Entity Framework configuration
-* MailKit email sender
-* Shared services
-
-Reference:
+## Project References
 
 ```xml
-<ProjectReference Include="..\TailwindIdentity.Core\TailwindIdentity.Core.csproj" />
+<ProjectReference Include="..\TailwindIdentity.EntityFrameworkCore\TailwindIdentity.EntityFrameworkCore.csproj" />
 ```
 
----
+The `TailwindIdentity.EntityFrameworkCore` project references `TailwindIdentity.Core` and provides:
+* `AddTailwindIdentity()` extension method
+* Identity entities (`ApplicationUser`, `ApplicationRole`)
+* EF Core context and migrations
+* MailKit email sender
 
-# Controllers
+## npm Dev Dependencies
 
-Main controllers:
-
-## AccountController
-
-Handles:
-
-* Login
-* Register
-* Logout
-* Password recovery
-
-Example:
-
-```csharp
-public class AccountController : Controller
-{
-    public IActionResult Login()
-    {
-        return View();
-    }
-}
-```
-
----
-
-## ManageController
-
-Handles:
-
-* User profile
-* Account settings
-* Password changes
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `@tailwindcss/cli` | ^4.3.3 | Tailwind CLI |
+| `@tailwindcss/postcss` | ^4.3.3 | PostCSS plugin |
+| `postcss` | ^8.5.23 | PostCSS |
+| `postcss-cli` | ^11.0.1 | PostCSS CLI |
+| `autoprefixer` | ^10.5.4 | CSS vendor prefixes |
+| `esbuild` | ^0.28.1 | JS bundler |
+| `lucide` | ^1.25.0 | Icon library |
 
 ---
 
 # Tailwind CSS Pipeline
 
-Frontend stack:
+The frontend uses:
 
-* Tailwind CSS 4.3
-* PostCSS
-* esbuild
+* Tailwind CSS 4.3 (native CSS variables, no config file needed)
+* PostCSS for processing
+* esbuild for JavaScript bundling
 
-Install:
+## Install Dependencies
 
 ```bash
 npm install
 ```
 
-Development:
+## Development Mode (Watch)
 
 ```bash
 npm run dev
 ```
 
-Production:
+Runs `postcss` in watch mode:
+```
+postcss wwwroot/css/app.css -o wwwroot/css/style.css --watch
+```
+
+## Production Build
 
 ```bash
 npm run build
 ```
 
-Generated assets:
-
-```text
-wwwroot/
-
-├── css/
-│   └── app.css
-│
-└── js/
-    └── app.js
+Compiles (non-minified):
 ```
+postcss wwwroot/css/app.css -o wwwroot/css/style.css
+```
+
+## Minified Production Build
+
+```bash
+npm run css:build
+```
+
+Uses Tailwind CLI with minification:
+```
+npx @tailwindcss/cli -i ./wwwroot/css/app.css -o ./wwwroot/css/style.css --minify
+```
+
+## JavaScript Bundling
+
+```bash
+npm run build:js
+```
+
+Bundles icons:
+```
+esbuild wwwroot/js/icons.js --bundle --outfile=wwwroot/js/icons.bundle.js
+```
+
+## Generated Files
+
+```
+wwwroot/
+└── css/
+    ├── app.css      # Source (Tailwind directives)
+    └── style.css    # Compiled output (referenced in _Layout.cshtml)
+```
+
+The `Tailwind` MSBuild target in the `.csproj` runs `npm run css:build` before each .NET build.
 
 ---
 
-# Database Configuration
+# Database Setup
 
-The project uses Entity Framework Core through `TailwindIdentity.Core`.
+## Connection String
 
-Update database:
-
-```bash
-dotnet ef database update \
--p ../TailwindIdentity.Core \
--s .
-```
-
-Example connection:
+Default in `appsettings.json` (currently minimal - add your connection string):
 
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection":
-    "Server=localhost;Database=TailwindIdentity;Trusted_Connection=True;TrustServerCertificate=True"
+    "DefaultConnection": "Server=localhost;Database=TailwindIdentity;Trusted_Connection=True;Encrypt=true;MultipleActiveResultSets=true;TrustServerCertificate=true"
   }
 }
+```
+
+## Apply Migrations
+
+Migrations are in `TailwindIdentity.EntityFrameworkCore/Migrations/`.
+
+```bash
+dotnet ef database update \
+  -p ../TailwindIdentity.EntityFrameworkCore \
+  -s .
+```
+
+## Create a Migration
+
+```bash
+dotnet ef migrations add MigrationName \
+  -p ../TailwindIdentity.EntityFrameworkCore \
+  -s .
 ```
 
 ---
 
 # Run Application
 
-Restore dependencies:
+## Prerequisites
+
+* .NET 8 SDK
+* Node.js 18+ (for Tailwind CSS)
+* SQL Server LocalDB or SQL Server instance
+
+## Steps
+
+1. **Restore .NET packages:**
 
 ```bash
 dotnet restore
 ```
 
-Start frontend build:
+2. **Install npm dependencies:**
 
 ```bash
-npm run dev
+npm install
 ```
 
-Launch application:
+3. **Build CSS (one-time, minified for production):**
 
 ```bash
+npm run css:build
+```
+
+4. **Run database migrations:**
+
+```bash
+dotnet ef database update -p ../TailwindIdentity.EntityFrameworkCore -s .
+```
+
+5. **Start development:**
+
+```bash
+# Terminal 1 - CSS watch mode (optional)
+npm run dev
+
+# Terminal 2 - Run application
 dotnet run
 ```
+
+The application will be available at `https://localhost:5001` (or the configured port).
+
+---
+
+# Configuration
+
+## appsettings.json
+
+Currently minimal - add these sections as needed:
+
+| Section | Description |
+|---------|-------------|
+| `ConnectionStrings.DefaultConnection` | SQL Server connection |
+| `Email` | SMTP settings for MailKit (From, SmtpHost, SmtpPort, SmtpUser, SmtpPassword) |
+| `Identity.RequireConfirmedEmail` | Require email confirmation for sign-in |
+| `Logging` | Log levels |
+
+## Program.cs Highlights
+
+* Uses `AddControllersWithViews()` for MVC
+* Uses `AddTailwindIdentity()` extension from `TailwindIdentity.EntityFrameworkCore`
+* Configures authentication/authorization middleware
+* Maps default controller route: `{controller=Home}/{action=Index}/{id?}`
 
 ---
 
 # Screenshots
 
-Recommended screenshots:
+Add screenshots to `docs/images/`:
 
-```text
+```
 docs/images/
-
 ├── mvc-login.png
 ├── mvc-register.png
-└── mvc-profile.png
+├── mvc-profile.png
+└── mvc-legal.png
 ```
 
-Example:
+Example usage:
 
+```markdown
 ![MVC Login](../../docs/images/mvc-login.png)
+```
 
 ---
 
 # Technology Stack
 
-| Technology            | Usage          |
-| --------------------- | -------------- |
-| ASP.NET Core MVC      | Web framework  |
-| Razor Views           | UI rendering   |
-| Tailwind CSS          | Styling        |
-| Entity Framework Core | Data access    |
+| Technology | Usage |
+|------------|-------|
+| ASP.NET Core 8 | Web framework |
+| MVC | Architecture (Controllers + Views) |
+| Razor Views | UI rendering |
+| Tailwind CSS 4.3 | Styling (native CSS variables) |
+| PostCSS | CSS processing |
+| esbuild | JavaScript bundling |
+| Entity Framework Core 8 | Database access (via EntityFrameworkCore project) |
 | ASP.NET Core Identity | Authentication |
-| MailKit               | Email delivery |
+| MailKit | Email services (available, commented in Program.cs) |
 
 ---
 
 # Related Projects
 
-| Project                 | Description                    |
-| ----------------------- | ------------------------------ |
-| TailwindIdentity.Core   | Shared Identity infrastructure |
-| TailwindIdentity.Razor  | Razor Pages template           |
-| TailwindIdentity.Blazor | Blazor template                |
-| TailwindIdentity.Maui   | MAUI Hybrid template           |
+| Project | Description |
+|---------|-------------|
+| `TailwindIdentity.Core` | Shared Identity entities & services |
+| `TailwindIdentity.EntityFrameworkCore` | EF Core Identity implementation |
+| `TailwindRazorPage.Web` | Razor Pages template |
+| `TailwindBlazor.Web` | Blazor template |
+| `TailwindMaui.Web` | MAUI Hybrid template |
 
 ---
 
