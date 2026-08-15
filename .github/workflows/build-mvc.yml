@@ -2,16 +2,10 @@ name: Build MVC
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'src/TailwindMvc.Web/**'
-      - '.github/workflows/build-mvc.yml'
-
   pull_request:
-    paths:
-      - 'src/TailwindMvc.Web/**'
-      - '.github/workflows/build-mvc.yml'
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -20,18 +14,70 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: Src/TailwindMvc.Web/package-lock.json
+
+      - name: Install npm dependencies
+        working-directory: Src/TailwindMvc.Web
+        run: npm ci
+
       - name: Restore
-        run: dotnet restore src/TailwindMvc.Web/TailwindMvc.Web.csproj
+        run: dotnet restore Src/TailwindMvc.Web/TailwindMvc.Web.csproj
 
       - name: Build
-        run: dotnet build src/TailwindMvc.Web/TailwindMvc.Web.csproj --configuration Release --no-restore
+        run: >
+          dotnet build
+          Src/TailwindMvc.Web/TailwindMvc.Web.csproj
+          --configuration Release
+          --no-restore
 
-     
+      - name: Copy artifacts
+        run: |
+          rm -rf .artifacts
+          mkdir -p .artifacts
+
+          cp -r Src/TailwindMvc.Web/bin .artifacts/
+          cp -r Src/TailwindMvc.Web/obj .artifacts/
+
       - name: Publish
-        run: dotnet publish src/TailwindMvc.Web/TailwindMvc.Web.csproj --configuration Release --no-build --output ./publish/mvc
+        run: >
+          dotnet publish
+          Src/TailwindMvc.Web/TailwindRazorPage.Web.csproj
+          --configuration Release
+          --framework net8.0
+          --no-build
+          --output ./publish/mvc
+
+      - name: Copy publish
+        run: |
+          rm -rf .publish
+          mkdir -p .publish
+
+          cp -r publish/. .publish/
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -f .artifacts .publish
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update build artifacts and publish"
+            git push
+          fi
+
