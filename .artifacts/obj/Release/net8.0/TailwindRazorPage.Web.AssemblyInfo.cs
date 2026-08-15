@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TailwindRazorPage.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+40bf00c93ea48a9e092530cab11bd30e7522c94e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e955e78b67033a8640144dbfa5999bd367fb8cd7")]
 [assembly: System.Reflection.AssemblyProductAttribute("TailwindRazorPage.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TailwindRazorPage.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
