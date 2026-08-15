@@ -5,12 +5,12 @@ on:
     branches:
       - main
     paths:
-      - 'src/MyApp.Mvc/**'
+      - 'src/TailwindMvc.Web/**'
       - '.github/workflows/build-mvc.yml'
 
   pull_request:
     paths:
-      - 'src/MyApp.Mvc/**'
+      - 'src/TailwindMvc.Web/**'
       - '.github/workflows/build-mvc.yml'
 
 jobs:
