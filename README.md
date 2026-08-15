@@ -1,5 +1,11 @@
 # ASP.NET Core Starter Templates with Tailwind CSS 4.3
 
+[![Build](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-mvc.yml/badge.svg)](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-mvc.yml)
+[![Build](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-razorpage.yml/badge.svg)](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-razorpage.yml)
+
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+
 A collection of modern **ASP.NET Core starter templates** preconfigured with **Tailwind CSS 4.3**, **PostCSS**, and **esbuild**.
 
 These templates provide a clean foundation for building web applications with the latest .NET technologies while keeping the frontend workflow simple, maintainable, and easy to customize.
