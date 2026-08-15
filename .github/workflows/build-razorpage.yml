@@ -2,7 +2,7 @@ name: Build Razor Pages
 
 on:
   push:
-  pull_request:  
+  pull_request:
 
 jobs:
   build:
@@ -18,10 +18,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore
-        run: dotnet restore src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj
+        run: dotnet restore TailwindRazorPage.Web.csproj
 
       - name: Build
-        run: dotnet build src/TailwindRazorPage.Webe/TailwindRazorPage.Web.csproj --configuration Release --no-restore
+        run: dotnet build TailwindRazorPage.Web.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish src/TailwidRazorPage.Web/TailwindrazorPage.Web.csproj --configuration Release --no-build --output ./publish/razorpage
+        run: dotnet publish TailwindRazorPage.Web.csproj --configuration Release --no-build --output ./publish/razorpage
