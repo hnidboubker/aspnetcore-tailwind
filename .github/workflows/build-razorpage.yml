@@ -44,13 +44,13 @@ jobs:
           --configuration Release
           --no-restore
 
-      - name: Copy artifacts
-        run: |
-          rm -rf .artifacts
-          mkdir -p .artifacts
+      # - name: Copy artifacts
+      #   run: |
+      #     rm -rf .artifacts
+      #     mkdir -p .artifacts
 
-          cp -r Src/TailwindRazorPage.Web/bin .artifacts/
-          cp -r Src/TailwindRazorPage.Web/obj .artifacts/
+      #     cp -r Src/TailwindRazorPage.Web/bin .artifacts/
+      #     cp -r Src/TailwindRazorPage.Web/obj .artifacts/
 
       - name: Publish
         run: >
@@ -61,24 +61,24 @@ jobs:
           --no-build
           --output ./publish/razorpage
 
-      - name: Copy publish
-        run: |
-          rm -rf .publish
-          mkdir -p .publish
+      # - name: Copy publish
+      #   run: |
+      #     rm -rf .publish
+      #     mkdir -p .publish
 
-          cp -r publish/. .publish/
+      #     cp -r publish/. .publish/
 
-      - name: Commit generated files
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      # - name: Commit generated files
+      #   run: |
+      #     git config user.name "github-actions[bot]"
+      #     git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add -f .artifacts .publish
+      #     git add -f .artifacts .publish
 
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git commit -m "chore: update build artifacts and publish"
-            git push
-          fi
+      #     if git diff --cached --quiet; then
+      #       echo "No changes to commit."
+      #     else
+      #       git commit -m "chore: update build artifacts and publish"
+      #       git push
+      #     fi
 
