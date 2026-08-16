@@ -241,33 +241,34 @@ public class AccountController : Controller
 
     [HttpGet]
     public async Task<IActionResult> ConfirmEmail(int? userId, string code)
-    //{
-    //    if (string.IsNullOrEmpty(userId.ToString()) ||
-    //        string.IsNullOrEmpty(code))
-    //    {
-    //        return BadRequest();
-    //    }
+    {
+        if (string.IsNullOrEmpty(userId.ToString()) ||
+            string.IsNullOrEmpty(code))
+        {
+            return BadRequest();
+        }
 
-    //    var user = await UserManager.FindByIdAsync(userId);
+        ApplicationUser user = await UserManager.FindByIdAsync(userId.ToString());
 
-    //    if (user is null)
-    //    {
-    //        return NotFound();
-    //    }
-
-        if (string.IsNullOrEmpty(userId))
+        if (user is null)
         {
             return NotFound();
         }
 
-        var user = await _userManager.FindByIdAsync(userId);
+        //if (string.IsNullOrEmpty(userId.))
+        //{
+        //    return NotFound();
+        //}
 
-        if (user == null)
-        {
-            return NotFound();
-         }
-        var decodedCode = Encoding.UTF8.GetString(
-            WebEncoders.Base64UrlDecode(code));
+        //var user = await UserManager.FindByIdAsync(userId);
+
+
+        //if (user is null)
+        //{
+        //    return NotFound();
+        //}
+        var decodedCode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+          
 
         var result = await UserManager.ConfirmEmailAsync(user, decodedCode);
             
