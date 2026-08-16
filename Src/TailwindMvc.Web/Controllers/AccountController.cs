@@ -175,22 +175,21 @@ public class AccountController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> SendConfirmation(
-        SendConfirmationViewModel model)
+    public async Task<IActionResult> SendConfirmation(SendConfirmationViewModel model)       
     {
         if (!ModelState.IsValid)
         {
             return View(model);
         }
 
-        var user = await _userManager.FindByEmailAsync(model.Email);
+        var user = await UserManager.FindByEmailAsync(model.Email);
 
         // Toujours afficher un message générique
         // pour éviter l'énumération des utilisateurs.
         if (user is not null &&
-            !await _userManager.IsEmailConfirmedAsync(user))
+            !await UserManager.IsEmailConfirmedAsync(user))
         {
-            var code = await _userManager
+            var code = await UserManager
                 .GenerateEmailConfirmationTokenAsync(user);
 
             code = WebEncoders.Base64UrlEncode(
@@ -226,10 +225,10 @@ public class AccountController : Controller
                 </p>
                 """;
 
-            await _emailService.SendAsync(
-                model.Email,
-                subject,
-                html);
+            await EmailService.SendAsync(model.Email, subject, html);
+            
+              
+               
         }
 
         // Message volontairement identique quel que soit le cas.
@@ -245,13 +244,13 @@ public class AccountController : Controller
        
         
     {
-        if (string.IsNullOrEmpty(userId) ||
+        if (string.IsNullOrEmpty(userId.ToString()) ||
             string.IsNullOrEmpty(code))
         {
             return BadRequest();
         }
 
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await UserManager.FindByIdAsync(userId.ToString());
 
         if (user is null)
         {
@@ -261,9 +260,9 @@ public class AccountController : Controller
         var decodedCode = Encoding.UTF8.GetString(
             WebEncoders.Base64UrlDecode(code));
 
-        var result = await _userManager.ConfirmEmailAsync(
-            user,
-            decodedCode);
+        var result = await UserManager.ConfirmEmailAsync(user, decodedCode);
+            
+         
 
         if (result.Succeeded)
         {
