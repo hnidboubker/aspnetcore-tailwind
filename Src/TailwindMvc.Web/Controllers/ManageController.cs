@@ -115,37 +115,4 @@ public class ManageController : Controller
     }
 }
 
-public class ProfileViewModel
-{
-    [Required(ErrorMessage = "Le prénom est requis")]
-    [MaxLength(100)]
-    [Display(Name = "Prénom")]
-    public string FirstName { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Le nom est requis")]
-    [MaxLength(100)]
-    [Display(Name = "Nom")]
-    public string LastName { get; set; } = string.Empty;
-
-    [EmailAddress]
-    public string Email { get; set; } = string.Empty;
-}
-
-public class ChangePasswordViewModel
-{
-    [Required(ErrorMessage = "Le mot de passe actuel est requis")]
-    [DataType(DataType.Password)]
-    [Display(Name = "Mot de passe actuel")]
-    public string OldPassword { get; set; } = string.Empty;
-
-    [Required(ErrorMessage = "Le nouveau mot de passe est requis")]
-    [StringLength(100, ErrorMessage = "Le mot de passe doit contenir entre {2} et {1} caractères.", MinimumLength = 8)]
-    [DataType(DataType.Password)]
-    [Display(Name = "Nouveau mot de passe")]
-    public string NewPassword { get; set; } = string.Empty;
-
-    [DataType(DataType.Password)]
-    [Display(Name = "Confirmer le mot de passe")]
-    [Compare("NewPassword", ErrorMessage = "Les mots de passe ne correspondent pas.")]
-    public string ConfirmPassword { get; set; } = string.Empty;
-}
