@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TailwindIdentity.Core.Models;
+using TailwindMvc.Web.Models;
 
 namespace TailwindMvc.Web.Controllers;
 
