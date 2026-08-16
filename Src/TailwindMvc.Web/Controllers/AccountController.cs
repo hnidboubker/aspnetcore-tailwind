@@ -7,18 +7,18 @@ namespace TailwindMvc.Web.Controllers;
 
 public class AccountController : Controller
 {
-    private readonly SignInManager<ApplicationUser> _signInManager;
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly ILogger<AccountController> _logger;
+    private readonly SignInManager<ApplicationUser> SignInManager;
+    private readonly UserManager<ApplicationUser> UserManager;
+    private readonly ILogger<AccountController> Logger;
 
     public AccountController(
         SignInManager<ApplicationUser> signInManager,
         UserManager<ApplicationUser> userManager,
         ILogger<AccountController> logger)
     {
-        _signInManager = signInManager;
-        _userManager = userManager;
-        _logger = logger;
+        SignInManager = signInManager;
+        UserManager = userManager;
+        Logger = logger;
     }
 
     [HttpGet]
@@ -30,23 +30,23 @@ public class AccountController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl = null)
+    public async Task<IActionResult> SignIn(LoginViewModel model, string? returnUrl = null)
     {
         ViewData["ReturnUrl"] = returnUrl;
 
         if (ModelState.IsValid)
         {
-            var result = await _signInManager.PasswordSignInAsync(
+            var result = await SignInManager.PasswordSignInAsync(
                 model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User logged in.");
+                Logger.LogInformation("User logged in.");
                 return LocalRedirect(returnUrl ?? "/");
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning("User account locked out.");
+                Logger.LogWarning("User account locked out.");
                 return View("Lockout");
             }
             else
@@ -60,7 +60,7 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public IActionResult Register(string? returnUrl = null)
+    public IActionResult SignUp(string? returnUrl = null)
     {
         ViewData["ReturnUrl"] = returnUrl;
         return View();
@@ -68,7 +68,7 @@ public class AccountController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl = null)
+    public async Task<IActionResult> SignUp(RegisterViewModel model, string? returnUrl = null)
     {
         ViewData["ReturnUrl"] = returnUrl;
 
@@ -82,11 +82,11 @@ public class AccountController : Controller
                 LastName = model.LastName
             };
 
-            var result = await _userManager.CreateAsync(user, model.Password);
+            var result = await UserManager.CreateAsync(user, model.Password);
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User created a new account with password.");
+                Logger.LogInformation("User created a new account with password.");
                 return RedirectToAction("Login");
             }
 
@@ -111,15 +111,15 @@ public class AccountController : Controller
     {
         if (ModelState.IsValid)
         {
-            var user = await _userManager.FindByEmailAsync(model.Email);
+            var user = await UserManager.FindByEmailAsync(model.Email);
 
             if (user != null)
             {
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var code = await UserManager.GeneratePasswordResetTokenAsync(user);
                 var callbackUrl = Url.Action("ResetPassword", "Account",
                     new { area = "", code = code }, protocol: Request.Scheme);
 
-                _logger.LogInformation("Password reset token generated for user {Email}", model.Email);
+                Logger.LogInformation("Password reset token generated for user {Email}", model.Email);
             }
 
             return RedirectToAction("ForgotPasswordConfirmation");
@@ -148,8 +148,8 @@ public class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
     {
-        await _signInManager.SignOutAsync();
-        _logger.LogInformation("User logged out.");
+        await SignInManager.SignOutAsync();
+        Logger.LogInformation("User logged out.");
         return RedirectToAction("Index", "Home");
     }
 
