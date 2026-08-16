@@ -18,4 +18,7 @@
   <Folder Name="/RazorPage/">
     <Project Path="Src/TailwindRazorPage.Web/TailwindRazorPage.Web.csproj" />
   </Folder>
+  <Folder Name="/UnitTests/">
+    <Project Path="tests/TailwindRazorPage.Web.UnitTests/TailwindRazorPage.Web.UnitTests.csproj" Id="0335aa1b-6c92-406f-b2da-9c8b0c846b0e" />
+  </Folder>
 </Solution>
