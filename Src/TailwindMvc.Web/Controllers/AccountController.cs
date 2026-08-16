@@ -142,15 +142,15 @@ public class AccountController : Controller
         return View();
     }
 
-    [HttpGet]
-    public IActionResult ConfirmEmail(string? userId, string? code)
-    {
-        if (userId == null || code == null)
-        {
-            return RedirectToAction("Index", "Home");
-        }
-        return View();
-    }
+    //[HttpGet]
+    //public IActionResult ConfirmEmail(string? userId, string? code)
+    //{
+    //    if (userId == null || code == null)
+    //    {
+    //        return RedirectToAction("Index", "Home");
+    //    }
+    //    return View();
+    //}
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -241,9 +241,9 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> ConfirmEmail(
-        string userId,
-        string code)
+    public async Task<IActionResult> ConfirmEmail(int? userId, string code)
+       
+        
     {
         if (string.IsNullOrEmpty(userId) ||
             string.IsNullOrEmpty(code))
