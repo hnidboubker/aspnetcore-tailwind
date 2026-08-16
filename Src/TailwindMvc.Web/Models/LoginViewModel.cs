@@ -5,8 +5,8 @@ namespace TailwindMvc.Web.Models
     public class LoginViewModel
     {
         [Required(ErrorMessage = "L'email est requis")]
-        [EmailAddress(ErrorMessage = "L'email n'est pas valide")]
-        public string Email { get; set; } = string.Empty;
+       // [EmailAddress(ErrorMessage = "L'email n'est pas valide")]
+        public string UserNameOrEmail { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Le mot de passe est requis")]
         [DataType(DataType.Password)]

@@ -13,6 +13,11 @@ namespace TailwindMvc.Web.Models
         [MaxLength(100)]
         [Display(Name = "Nom")]
         public string LastName { get; set; } = string.Empty;
+        
+        [Required(ErrorMessage = "Le User name est requis")]
+        [MaxLength(100)]
+        [Display(Name = "Username")]
+        public string UserName { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "L'email est requis")]
         [EmailAddress(ErrorMessage = "L'email n'est pas valide")]

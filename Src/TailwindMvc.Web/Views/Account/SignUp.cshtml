@@ -9,7 +9,7 @@
             <h1 class="text-3xl font-bold tracking-tight text-gray-900">Inscription</h1>
             <p class="mt-2 text-sm text-gray-600">
                 Déjà un compte ?
-                <a asp-action="Login" class="font-semibold text-emerald-600 hover:text-emerald-500 transition-colors">
+                <a asp-action="SignIn" class="font-semibold text-emerald-600 hover:text-emerald-500 transition-colors">
                     Se connecter
                 </a>
             </p>
@@ -36,6 +36,13 @@
                 </div>
 
                 <div>
+                    <label asp-for="UserName" class="block text-sm font-medium leading-6 text-gray-900">Nom utilisateur</label>
+                    <input asp-for="UserName" autocomplete="username"
+                           class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />
+                    <span asp-validation-for="UserName" class="mt-1 text-sm text-red-600"></span>
+                </div>
+
+                  <div>
                     <label asp-for="Email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                     <input asp-for="Email" autocomplete="username"
                            class="mt-2 block w-full rounded-lg border-0 px-3.5 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6" />

@@ -30,7 +30,7 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public IActionResult Login(string? returnUrl = null)
+    public IActionResult SignIn(string? returnUrl = null)
     {
         ViewData["ReturnUrl"] = returnUrl;
         return View();
@@ -45,7 +45,7 @@ public class AccountController : Controller
         if (ModelState.IsValid)
         {
             var result = await SignInManager.PasswordSignInAsync(
-                model.Email, model.Password, model.RememberMe, lockoutOnFailure: true);
+                model.UserNameOrEmail, model.Password, model.RememberMe, lockoutOnFailure: true);
 
             if (result.Succeeded)
             {
@@ -84,7 +84,7 @@ public class AccountController : Controller
         {
             var user = new ApplicationUser
             {
-                UserName = model.Email,
+                UserName = model.UserName,
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName
@@ -255,18 +255,6 @@ public class AccountController : Controller
             return NotFound();
         }
 
-        //if (string.IsNullOrEmpty(userId.))
-        //{
-        //    return NotFound();
-        //}
-
-        //var user = await UserManager.FindByIdAsync(userId);
-
-
-        //if (user is null)
-        //{
-        //    return NotFound();
-        //}
         var decodedCode = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
           
 
