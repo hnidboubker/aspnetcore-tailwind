@@ -1,7 +1,12 @@
-using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
 using TailwindIdentity.Core.Models;
+using TailwindIdentity.EntityFrameworkCore.Services;
+using TailwindMvc.Web.Models;
 
 namespace TailwindMvc.Web.Controllers;
 
@@ -9,16 +14,19 @@ public class AccountController : Controller
 {
     private readonly SignInManager<ApplicationUser> SignInManager;
     private readonly UserManager<ApplicationUser> UserManager;
+    private readonly IEmailService EmailService;
     private readonly ILogger<AccountController> Logger;
 
-    public AccountController(
-        SignInManager<ApplicationUser> signInManager,
-        UserManager<ApplicationUser> userManager,
-        ILogger<AccountController> logger)
+    public AccountController(SignInManager<ApplicationUser> signInManager,
+                             UserManager<ApplicationUser> userManager,
+                             ILogger<AccountController> logger,
+                             IEmailService emailService)
+
     {
-        SignInManager = signInManager;
-        UserManager = userManager;
-        Logger = logger;
+                            SignInManager = signInManager;
+                            UserManager = userManager;
+                            Logger = logger;
+                            EmailService = emailService;
     }
 
     [HttpGet]
@@ -158,53 +166,112 @@ public class AccountController : Controller
     {
         return View();
     }
+
+    [HttpGet]
+    public IActionResult SendConfirmation()
+    {
+        return View(new SendConfirmationViewModel());
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> SendConfirmation(
+        SendConfirmationViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var user = await _userManager.FindByEmailAsync(model.Email);
+
+        // Toujours afficher un message générique
+        // pour éviter l'énumération des utilisateurs.
+        if (user is not null &&
+            !await _userManager.IsEmailConfirmedAsync(user))
+        {
+            var code = await _userManager
+                .GenerateEmailConfirmationTokenAsync(user);
+
+            code = WebEncoders.Base64UrlEncode(
+                Encoding.UTF8.GetBytes(code));
+
+            var confirmLink = Url.Action(
+                "ConfirmEmail",
+                "Account",
+                new
+                {
+                    userId = user.Id,
+                    code
+                },
+                protocol: Request.Scheme);
+
+            var subject = "Confirmez votre adresse e-mail";
+
+            var html = $"""
+                <h2>Confirmation d'adresse e-mail</h2>
+                <p>Bonjour,</p>
+                <p>
+                    Merci de confirmer votre adresse e-mail
+                    en cliquant sur le lien ci-dessous :
+                </p>
+                <p>
+                    <a href="{HtmlEncoder.Default.Encode(confirmLink ?? string.Empty)}">
+                        Confirmer mon adresse e-mail
+                    </a>
+                </p>
+                <p>
+                    Si vous n'êtes pas à l'origine de cette demande,
+                    ignorez cet e-mail.
+                </p>
+                """;
+
+            await _emailService.SendAsync(
+                model.Email,
+                subject,
+                html);
+        }
+
+        // Message volontairement identique quel que soit le cas.
+        model.ConfirmationMessage =
+            "Si un compte est associé à cette adresse, " +
+            "un e-mail de confirmation sera envoyé.";
+
+        return View(model);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ConfirmEmail(
+        string userId,
+        string code)
+    {
+        if (string.IsNullOrEmpty(userId) ||
+            string.IsNullOrEmpty(code))
+        {
+            return BadRequest();
+        }
+
+        var user = await _userManager.FindByIdAsync(userId);
+
+        if (user is null)
+        {
+            return NotFound();
+        }
+
+        var decodedCode = Encoding.UTF8.GetString(
+            WebEncoders.Base64UrlDecode(code));
+
+        var result = await _userManager.ConfirmEmailAsync(
+            user,
+            decodedCode);
+
+        if (result.Succeeded)
+        {
+            return View("ConfirmEmailSuccess");
+        }
+
+        return View("ConfirmEmailError");
+    }
 }
 
-public class LoginViewModel
-{
-    [Required(ErrorMessage = "L'email est requis")]
-    [EmailAddress(ErrorMessage = "L'email n'est pas valide")]
-    public string Email { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Le mot de passe est requis")]
-    [DataType(DataType.Password)]
-    public string Password { get; set; } = string.Empty;
-
-    [Display(Name = "Se souvenir de moi")]
-    public bool RememberMe { get; set; }
-}
-
-public class RegisterViewModel
-{
-    [Required(ErrorMessage = "Le prénom est requis")]
-    [MaxLength(100)]
-    [Display(Name = "Prénom")]
-    public string FirstName { get; set; } = string.Empty;
-
-    [Required(ErrorMessage = "Le nom est requis")]
-    [MaxLength(100)]
-    [Display(Name = "Nom")]
-    public string LastName { get; set; } = string.Empty;
-
-    [Required(ErrorMessage = "L'email est requis")]
-    [EmailAddress(ErrorMessage = "L'email n'est pas valide")]
-    public string Email { get; set; } = string.Empty;
-
-    [Required(ErrorMessage = "Le mot de passe est requis")]
-    [StringLength(100, ErrorMessage = "Le mot de passe doit contenir entre {2} et {1} caractères.", MinimumLength = 8)]
-    [DataType(DataType.Password)]
-    [Display(Name = "Mot de passe")]
-    public string Password { get; set; } = string.Empty;
-
-    [DataType(DataType.Password)]
-    [Display(Name = "Confirmer le mot de passe")]
-    [Compare("Password", ErrorMessage = "Les mots de passe ne correspondent pas.")]
-    public string ConfirmPassword { get; set; } = string.Empty;
-}
-
-public class ForgotPasswordViewModel
-{
-    [Required(ErrorMessage = "L'email est requis")]
-    [EmailAddress(ErrorMessage = "L'email n'est pas valide")]
-    public string Email { get; set; } = string.Empty;
-}
