@@ -3,6 +3,7 @@
 [![Build](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-mvc.yml/badge.svg)](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-mvc.yml)
 [![Build](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-razorpage.yml/badge.svg)](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-razorpage.yml)
 [![Build](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-blazor.yml/badge.svg)](https://github.com/hnidboubker/aspnetcore-tailwind/actions/workflows/build-blazor.yml)
+[![codecov](https://codecov.io/github/hnidboubker/aspnetcore-tailwind/graph/badge.svg?token=VJ239CVBL2)](https://codecov.io/github/hnidboubker/aspnetcore-tailwind)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 
