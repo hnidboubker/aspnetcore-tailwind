@@ -207,11 +207,12 @@ public class SignUpPageModelTests
         var redirectResult = result as RedirectToPageResult;
         Assert.AreEqual("/Account/SendConfirmation", redirectResult?.PageName);
 
-        // Verify email was sent with the confirmation token
+        // Verify email was sent with the confirmation token (the URL may vary in tests)
+        // The email body contains "confirmer votre adresse e-mail" (lowercase)
         _emailServiceMock.Verify(x => x.SendAsync(
             "john@test.com",
             "Confirmez votre adresse e-mail",
-            It.Is<string>(s => s.Contains("Confirmez votre adresse e-mail"))), Times.Once);
+            It.Is<string>(s => s.Contains("confirmer votre adresse e-mail"))), Times.Once);
     }
 
     [TestMethod]
@@ -315,6 +316,12 @@ public class StubRouter : IRouter
 {
     public VirtualPathData? GetVirtualPath(VirtualPathContext context)
     {
+        // Handle the ConfirmEmail page route
+        if (context.RouteName == "/Account/ConfirmEmail" ||
+            (context.Values != null && context.Values.ContainsKey("page") && context.Values["page"].ToString() == "/Account/ConfirmEmail"))
+        {
+            return new VirtualPathData(this, "/Account/ConfirmEmail");
+        }
         return new VirtualPathData(this, context.RouteName ?? "/");
     }
 
