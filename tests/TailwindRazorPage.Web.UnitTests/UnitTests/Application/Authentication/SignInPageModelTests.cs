@@ -80,7 +80,6 @@ public class SignInPageModelTests
         }, "TestAuth");
         httpContext.User = new System.Security.Claims.ClaimsPrincipal(identity);
         _pageModel.PageContext = new PageContext { HttpContext = httpContext };
-        _urlHelperMock.Setup(x => x.Page("/Index")).Returns("/Index");
 
         // Act
         var result = _pageModel.OnGet("/Home");
