@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TailwindIdentity.Core.Models;
@@ -158,18 +162,25 @@ public class SignUpPageModelTests
             _emailServiceMock.Object,
             _configurationWithEmailConfirmation);
 
-        // Use mocked UrlHelper with proper setup for Url.Page
-        var urlHelperMock = new Mock<IUrlHelper>();
-        urlHelperMock
-            .Setup(x => x.Page(
-                "/Account/ConfirmEmail",
-                null,
-                It.IsAny<object>(),
-                "https"))
-            .Returns("https://localhost/Account/ConfirmEmail?userId=123&code=token123");
-        pageModelWithConfirmation.Url = urlHelperMock.Object;
-        pageModelWithConfirmation.PageContext = _pageModel.PageContext;
-        pageModelWithConfirmation.TempData = _pageModel.TempData;
+        // Use the same setup as in TestInitialize for consistency
+        var httpContext = new DefaultHttpContext();
+        httpContext.Request.Scheme = "https";
+        httpContext.Request.Host = new HostString("localhost");
+        pageModelWithConfirmation.PageContext = new PageContext { HttpContext = httpContext };
+
+        // Create a real UrlHelper with a stub router
+        // Url.Page() requires a router to be present in RouteData
+        var stubRouter = new StubRouter();
+        var routeData = new RouteData();
+        routeData.Routers.Add(stubRouter);
+        var actionDescriptor = new ActionDescriptor();
+        var actionContext = new ActionContext(httpContext, routeData, actionDescriptor);
+        var urlHelper = new UrlHelper(actionContext);
+        pageModelWithConfirmation.Url = urlHelper;
+
+        var tempDataProvider = new Mock<ITempDataProvider>();
+        var tempDataDictionary = new TempDataDictionary(httpContext, tempDataProvider.Object);
+        pageModelWithConfirmation.TempData = tempDataDictionary;
 
         pageModelWithConfirmation.Input = new SignUpPageModel.InputModel
         {
@@ -191,10 +202,12 @@ public class SignUpPageModelTests
         // Act
         var result = await pageModelWithConfirmation.OnPostAsync("/Home");
 
-        // Assert
+        // Assert - we only verify the redirect to SendConfirmation happens
         Assert.IsInstanceOfType(result, typeof(RedirectToPageResult));
         var redirectResult = result as RedirectToPageResult;
         Assert.AreEqual("/Account/SendConfirmation", redirectResult?.PageName);
+
+        // Verify email was sent with the confirmation token
         _emailServiceMock.Verify(x => x.SendAsync(
             "john@test.com",
             "Confirmez votre adresse e-mail",
@@ -296,4 +309,18 @@ public class SignUpPageModelTests
         Assert.AreEqual("John", capturedUser.FirstName);
         Assert.AreEqual("Doe", capturedUser.LastName);
     }
+
+// Stub router for testing UrlHelper
+public class StubRouter : IRouter
+{
+    public VirtualPathData? GetVirtualPath(VirtualPathContext context)
+    {
+        return new VirtualPathData(this, context.RouteName ?? "/");
+    }
+
+    public Task RouteAsync(RouteContext context)
+    {
+        return Task.CompletedTask;
+    }
+}
 }
