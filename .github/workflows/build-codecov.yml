@@ -1,28 +1,40 @@
 name: Run tests and upload coverage
 
-on: 
-  push
+on:
+  push:
 
 jobs:
   test:
-    name: Run tests and collect coverage
+    name: Run .NET tests and collect coverage
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Restore dependencies
+        run: dotnet restore
 
-      - name: Run tests
-        run: npx jest --coverage
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run tests with coverage
+        run: |
+          dotnet test \
+            --no-build \
+            --configuration Release \
+            --collect:"XPlat Code Coverage" \
+            --results-directory ./TestResults
 
       - name: Upload results to Codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./TestResults
