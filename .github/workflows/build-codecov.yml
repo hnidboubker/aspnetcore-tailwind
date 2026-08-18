@@ -1,12 +1,13 @@
 name: Run tests and upload coverage
 
-on: 
-  push
+on:
+  push:
 
 jobs:
   test:
     name: Run tests and collect coverage
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,11 +16,33 @@ jobs:
 
       - name: Set up Node
         uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Find package.json
+        id: npm-project
+        shell: bash
+        run: |
+          PACKAGE_JSON=$(find . -name package.json -not -path "*/node_modules/*" | head -n 1)
+
+          if [ -z "$PACKAGE_JSON" ]; then
+            echo "❌ Aucun package.json trouvé"
+            exit 1
+          fi
+
+          NPM_DIR=$(dirname "$PACKAGE_JSON")
+
+          echo "package.json trouvé : $PACKAGE_JSON"
+          echo "NPM_DIR=$NPM_DIR" >> "$GITHUB_ENV"
 
       - name: Install dependencies
-        run: npm install
+        working-directory: ${{ env.NPM_DIR }}
+        run: npm ci
 
       - name: Run tests
+        working-directory: ${{ env.NPM_DIR }}
         run: npx jest --coverage
 
       - name: Upload results to Codecov
