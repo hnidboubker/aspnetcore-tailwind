@@ -412,3 +412,10 @@ Thumbs.db
 graphify-out/
 
 
+.claude/*
+!.claude/.gitkeep
+
+artifacts/*
+
+.agents/*
+!.agents/.gitkeep
